@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Klädverket — Klädtryck med din logga</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0D0D0D;
+  --dark:#141414;
+  --dark2:#1C1C1C;
+  --dark3:#242424;
+  --gold:#C8A84B;
+  --gold2:#E2C46A;
+  --gold-light:#F5E9C0;
+  --white:#FFFFFF;
+  --off:#F0ECE4;
+  --mid:#888880;
+  --border:#2A2A2A;
+  --border2:#333333;
+  --accent:#C8A84B;
+  --red:#C0392B;
+  --fh:'Barlow Condensed',sans-serif;
+  --fb:'Barlow',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--dark);color:var(--white);font-family:var(--fb);font-size:16px;line-height:1.6}
+
+/* ── TOPBAR ── */
+.topbar{background:var(--gold);padding:.5rem 2rem;text-align:center}
+.topbar p{font-family:var(--fh);font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;color:var(--black)}
+.topbar span{text-decoration:underline;cursor:pointer}
+
+/* ── NAV ── */
+nav{background:var(--black);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200}
+.nav-inner{max-width:1300px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:66px;padding:0 2rem}
+.nav-logo{font-family:var(--fh);font-size:1.8rem;font-weight:900;color:var(--white);text-decoration:none;letter-spacing:.02em;line-height:1}
+.nav-logo em{color:var(--gold);font-style:normal}
+.nav-links{display:flex;gap:0;list-style:none}
+.nav-links a{color:#888;font-family:var(--fh);font-weight:700;font-size:.82rem;text-decoration:none;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1rem;border-right:1px solid var(--border);transition:color .2s,background .2s;display:block}
+.nav-links a:first-child{border-left:1px solid var(--border)}
+.nav-links a:hover{color:var(--gold);background:var(--dark2)}
+.nav-cta{background:var(--gold);color:var(--black);font-family:var(--fh);font-weight:900;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;padding:.55rem 1.5rem;text-decoration:none;transition:background .2s;border:2px solid var(--gold)}
+.nav-cta:hover{background:transparent;color:var(--gold)}
+
+/* ── HERO ── */
+.hero{background:var(--black);position:relative;overflow:hidden;padding:5rem 2rem 4.5rem}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,#0D0D0D 0%,#1a1408 50%,#0D0D0D 100%);opacity:.7}
+.hero-grid{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
+.hero-label{font-family:var(--fh);font-size:.78rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:.6rem}
+.hero-label::before{content:'';display:block;width:32px;height:2px;background:var(--gold)}
+.hero h1{font-family:var(--fh);font-size:clamp(3.5rem,7vw,6.5rem);font-weight:900;line-height:.9;letter-spacing:-.01em;margin-bottom:1.25rem;text-transform:uppercase}
+.hero h1 em{color:var(--gold);font-style:normal;display:block}
+.hero-lead{font-size:1.05rem;color:#999;max-width:440px;line-height:1.75;margin-bottom:2rem}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.btn-gold{background:var(--gold);color:var(--black);font-family:var(--fh);font-weight:900;font-size:1rem;letter-spacing:.1em;text-transform:uppercase;padding:.85rem 2.5rem;text-decoration:none;border:2px solid var(--gold);transition:all .2s;cursor:pointer;display:inline-block}
+.btn-gold:hover{background:transparent;color:var(--gold)}
+.btn-ghost{background:transparent;color:var(--white);font-family:var(--fh);font-weight:700;font-size:.95rem;letter-spacing:.08em;text-transform:uppercase;padding:.85rem 2rem;text-decoration:none;border:2px solid #444;transition:all .2s;cursor:pointer;display:inline-block}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.hero-checks{display:flex;flex-wrap:wrap;gap:.6rem 1.5rem}
+.hc{font-family:var(--fh);font-size:.88rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#888;display:flex;align-items:center;gap:.5rem}
+.hc::before{content:'✓';color:var(--gold);font-size:1rem}
+/* Hero visual */
+.hero-visual{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.hv-card{background:var(--dark2);border:1px solid var(--border2);padding:1.5rem 1rem;text-align:center;transition:border-color .3s,transform .3s}
+.hv-card:hover{border-color:var(--gold);transform:translateY(-3px)}
+.hv-card svg{width:90px;height:90px}
+.hv-card .hvl{font-family:var(--fh);font-size:1rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;margin-top:.6rem;color:var(--off)}
+.hv-card .hvp{font-size:.78rem;color:var(--gold);font-weight:600;margin-top:.2rem;font-family:var(--fh);letter-spacing:.04em}
+
+/* ── CHECKS STRIP ── */
+.checks-strip{background:var(--dark2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:.9rem 2rem}
+.checks-inner{max-width:1300px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+.cs-item{font-family:var(--fh);font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#777;display:flex;align-items:center;gap:.5rem}
+.cs-item em{color:var(--gold);font-style:normal}
+
+/* ── SECTIONS ── */
+section{padding:5rem 2rem}
+.container{max-width:1300px;margin:0 auto}
+.section-eyebrow{font-family:var(--fh);font-size:.75rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem}
+.section-eyebrow::before{content:'';display:block;width:24px;height:2px;background:var(--gold)}
+.section-title{font-family:var(--fh);font-size:clamp(2.2rem,5vw,3.8rem);font-weight:900;text-transform:uppercase;line-height:.95;letter-spacing:-.01em;margin-bottom:.6rem;color:var(--white)}
+.section-sub{font-size:1rem;color:var(--mid);max-width:500px;line-height:1.7}
+.section-header{margin-bottom:3rem}
+
+/* ── HOW ── */
+#hur{background:var(--black)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border)}
+.step{background:var(--dark);padding:2rem 1.5rem}
+.step-num{font-family:var(--fh);font-size:3.5rem;font-weight:900;color:var(--border2);line-height:1;margin-bottom:.75rem}
+.step h4{font-family:var(--fh);font-weight:800;font-size:1.1rem;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.5rem;color:var(--white)}
+.step p{font-size:.83rem;color:var(--mid);line-height:1.65}
+.step-line{width:32px;height:2px;background:var(--gold);margin-bottom:.75rem}
+
+/* ── PRODUCTS ── */
+#produkter{background:var(--dark)}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:1px;background:var(--border)}
+.product-card{background:var(--dark2);cursor:pointer;transition:background .2s;position:relative;overflow:hidden}
+.product-card:hover{background:var(--dark3)}
+.product-card.selected{outline:2px solid var(--gold);z-index:2}
+.product-img-area{height:170px;display:flex;align-items:center;justify-content:center;background:var(--dark3);position:relative;overflow:hidden}
+.product-img-area svg{width:120px;height:120px;transition:transform .3s}
+.product-card:hover .product-img-area svg{transform:scale(1.06)}
+.prod-tag{position:absolute;top:0;right:0;background:var(--gold);color:var(--black);font-family:var(--fh);font-size:.68rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .65rem}
+.prod-tag.new-t{background:#C0392B;color:#fff}
+.product-body{padding:1rem 1.25rem 1.25rem}
+.product-name{font-family:var(--fh);font-weight:800;font-size:1rem;text-transform:uppercase;letter-spacing:.04em;color:var(--white);margin-bottom:.2rem}
+.product-desc{font-size:.78rem;color:#666;line-height:1.5;margin-bottom:.75rem}
+.product-footer{display:flex;align-items:center;justify-content:space-between}
+.product-price{font-family:var(--fh);font-size:1.2rem;font-weight:900;color:var(--gold)}
+.product-price small{font-size:.7rem;color:#555;font-family:var(--fb);font-weight:400}
+.select-btn{background:transparent;color:#666;border:1px solid #333;padding:.3rem .8rem;font-family:var(--fh);font-weight:700;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.select-btn:hover,.select-btn.active{background:var(--gold);color:var(--black);border-color:var(--gold)}
+
+/* ── PRICES ── */
+#priser{background:var(--black)}
+.price-table-wrap{overflow-x:auto;border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+thead tr{background:var(--dark2)}
+th{font-family:var(--fh);font-weight:800;font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:#666;padding:.9rem 1.25rem;text-align:left;border-bottom:1px solid var(--border)}
+th.hl{color:var(--gold)}
+td{padding:.8rem 1.25rem;border-bottom:1px solid var(--border);color:#999}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:var(--dark2)}
+td.name{font-family:var(--fh);font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:.9rem;color:var(--white)}
+td.p-disc{color:var(--gold);font-family:var(--fh);font-weight:800;font-size:.95rem}
+td.p-best{color:#5FC882;font-family:var(--fh);font-weight:900;font-size:.95rem}
+.price-note{font-size:.78rem;color:#555;margin-top:1rem;line-height:1.8}
+
+/* ── ORDER ── */
+#bestall{background:var(--dark)}
+.order-layout{display:grid;grid-template-columns:1.15fr .85fr;gap:2rem;align-items:start}
+.form-panel{background:var(--dark2);border:1px solid var(--border);padding:1.75rem;margin-bottom:1rem}
+.panel-title{font-family:var(--fh);font-weight:900;font-size:1rem;text-transform:uppercase;letter-spacing:.08em;color:var(--white);margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.6rem}
+.panel-title::before{content:'';width:3px;height:1.1em;background:var(--gold);display:block}
+.form-group{margin-bottom:1rem}
+label{display:block;font-family:var(--fh);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:.4rem}
+input[type=text],input[type=email],input[type=tel],input[type=number],select,textarea{width:100%;padding:.65rem .9rem;border:1px solid var(--border);background:var(--dark);color:var(--white);font-family:var(--fb);font-size:.9rem;outline:none;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--gold)}
+select option{background:var(--dark2)}
+textarea{resize:vertical;min-height:90px}
+.chip-group{display:flex;flex-wrap:wrap;gap:.4rem}
+.chip{padding:.3rem .8rem;border:1px solid var(--border2);font-family:var(--fh);font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;color:#666;transition:all .15s;background:transparent}
+.chip.active{background:var(--gold);color:var(--black);border-color:var(--gold)}
+.chip:hover:not(.active){border-color:#555;color:#ccc}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+/* Upload */
+.upload-zone{border:1px dashed #333;padding:2rem;text-align:center;cursor:pointer;transition:all .2s;background:var(--dark);position:relative}
+.upload-zone:hover{border-color:var(--gold);background:#1a1508}
+.upload-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}
+.upload-icon{font-size:2rem;margin-bottom:.5rem;color:var(--gold)}
+.upload-title{font-family:var(--fh);font-weight:700;font-size:.95rem;text-transform:uppercase;letter-spacing:.06em;color:var(--white);margin-bottom:.2rem}
+.upload-sub{font-size:.78rem;color:#555}
+.upload-sub span{color:var(--gold)}
+#logo-preview{display:none;max-height:80px;margin:.75rem auto 0;border:1px solid var(--border)}
+#logo-filename{font-size:.75rem;color:var(--gold);margin-top:.4rem;font-weight:600}
+/* Summary */
+.summary-panel{background:var(--black);border:1px solid var(--border);padding:1.75rem;position:sticky;top:80px}
+.summary-panel .stitle{font-family:var(--fh);font-weight:900;font-size:1rem;text-transform:uppercase;letter-spacing:.08em;color:var(--white);margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.6rem}
+.summary-panel .stitle::before{content:'';width:3px;height:1.1em;background:var(--gold);display:block}
+.sum-row{display:flex;justify-content:space-between;padding:.4rem 0;font-size:.83rem;color:#555;border-bottom:1px solid #1a1a1a}
+.sum-row:last-of-type{border-bottom:none}
+.sum-row strong{color:#ccc;font-weight:500}
+.sum-divider{height:1px;background:var(--border);margin:.75rem 0}
+.sum-total-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.3rem}
+.sum-total-row span{font-size:.83rem;color:#555}
+.total-num{font-family:var(--fh);font-size:2.5rem;font-weight:900;color:var(--gold);line-height:1;letter-spacing:-.01em}
+.disc-badge{background:#1a1a08;border:1px solid #3a3010;color:var(--gold);font-size:.72rem;font-family:var(--fh);font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.25rem .65rem;display:inline-block;margin-top:.4rem}
+.submit-btn{display:block;width:100%;margin-top:1.25rem;padding:1.1rem;background:var(--gold);color:var(--black);border:2px solid var(--gold);font-family:var(--fh);font-weight:900;font-size:1.1rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.submit-btn:hover{background:transparent;color:var(--gold)}
+.submit-btn:disabled{background:#2a2a1a;color:#554;border-color:#333;cursor:not-allowed}
+.submit-note{font-size:.72rem;color:#444;text-align:center;margin-top:.6rem;line-height:1.6}
+#success-msg{display:none;background:#0a1a10;border:1px solid #2a5a30;padding:2.5rem;text-align:center;margin-top:1.5rem}
+#success-msg .s-icon{font-size:2.5rem;margin-bottom:.5rem}
+#success-msg h3{color:#5FC882;font-family:var(--fh);font-weight:900;font-size:1.5rem;text-transform:uppercase;margin-bottom:.4rem}
+#success-msg p{color:#4a8a58;font-size:.88rem}
+
+/* ── FAQ ── */
+#faq{background:var(--black)}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
+.faq-item{background:var(--dark);padding:1.75rem;transition:background .2s}
+.faq-item:hover{background:var(--dark2)}
+.faq-q{font-family:var(--fh);font-weight:800;font-size:.98rem;text-transform:uppercase;letter-spacing:.04em;color:var(--white);margin-bottom:.5rem;display:flex;gap:.6rem}
+.faq-q::before{content:'Q';color:var(--gold);flex-shrink:0;font-size:1rem}
+.faq-a{font-size:.83rem;color:var(--mid);line-height:1.7;padding-left:1.4rem}
+
+/* ── FOOTER ── */
+footer{background:var(--black);border-top:1px solid var(--border);padding:3rem 2rem}
+.footer-inner{max-width:1300px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:.75rem;text-align:center}
+.footer-logo{font-family:var(--fh);font-size:1.8rem;font-weight:900;color:var(--white);letter-spacing:.02em}
+.footer-logo em{color:var(--gold);font-style:normal}
+footer p{font-size:.8rem;color:#444}
+footer a{color:#555;text-decoration:none}
+footer a:hover{color:var(--gold)}
+
+@media(max-width:900px){
+  .hero-grid,.order-layout{grid-template-columns:1fr}
+  .hero-visual{display:none}
+  .steps{grid-template-columns:1fr 1fr}
+  .faq-grid{grid-template-columns:1fr}
+  nav{padding:0 1rem}
+  .nav-links{display:none}
+  section{padding:3.5rem 1.25rem}
+  .nav-inner{padding:0 1.25rem}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar"><p>Klädtryck från <span>1 plagg</span> — Inget minimikrav · Korrektur ingår · Leverans 5–8 dagar</p></div>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#"><em>KLÄD</em>VERKET</a>
+    <ul class="nav-links">
+      <li><a href="#produkter">Kläder</a></li>
+      <li><a href="#priser">Priser</a></li>
+      <li><a href="#hur">Hur det funkar</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a class="nav-cta" href="#bestall">Beställ tryck</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-label">Klädtryck på ditt villkor</div>
+      <h1>Beställ<br>tryck med<br><em>din logga</em></h1>
+      <p class="hero-lead">Proffsigt klädtryck utan krav på stora kvantiteter. Beställ ett enda plagg — eller hundra. Korrektur ingår alltid.</p>
+      <div class="hero-actions">
+        <a class="btn-gold" href="#bestall">Beställ tryck nu</a>
+        <a class="btn-ghost" href="#produkter">Se alla produkter</a>
+      </div>
+      <div class="hero-checks">
+        <span class="hc">Från 1 plagg</span>
+        <span class="hc">Korrektur ingår</span>
+        <span class="hc">Tryckt i Sverige</span>
+        <span class="hc">5–8 dagars leverans</span>
+      </div>
+    </div>
+    <div class="hero-visual" id="hero-visual"></div>
+  </div>
+</div>
+
+<!-- CHECKS STRIP -->
+<div class="checks-strip">
+  <div class="checks-inner">
+    <div class="cs-item"><em>✓</em> Inget minimikrav</div>
+    <div class="cs-item"><em>✓</em> Digitalt korrektur ingår alltid</div>
+    <div class="cs-item"><em>✓</em> Textilvinyl · Sublimering · Lasertransfer</div>
+    <div class="cs-item"><em>✓</em> Nöjd-kund-garanti</div>
+    <div class="cs-item"><em>✓</em> Pantone-matchning möjlig</div>
+  </div>
+</div>
+
+<!-- HUR DET FUNKAR -->
+<section id="hur">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Processen</div>
+      <h2 class="section-title">Så här funkar det</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-line"></div>
+        <h4>Välj plagg</h4>
+        <p>Välj bland 15 produkter. Välj teknik — textilvinyl, sublimering eller lasertransfer. Kepsar broderas via partner.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-line"></div>
+        <h4>Ladda upp loggan</h4>
+        <p>PNG, SVG, PDF, AI eller EPS. Har du bara JPG löser vi det — hör av dig.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-line"></div>
+        <h4>Godkänn korrektur</h4>
+        <p>Vi skickar ett digitalt korrektur inom 24h. Inget trycks utan ditt ok.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-line"></div>
+        <h4>Leverans</h4>
+        <p>5–8 arbetsdagar från godkänt korrektur. Express 2–3 dagar mot tillägg.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUKTER -->
+<section id="produkter">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Sortiment</div>
+      <h2 class="section-title">15 produkter att trycka på</h2>
+      <p class="section-sub">Klicka på ett plagg för att välja det i beställningen</p>
+    </div>
+    <div class="products-grid" id="products-grid"></div>
+  </div>
+</section>
+
+<!-- PRISER -->
+<section id="priser">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Prislista</div>
+      <h2 class="section-title">Tydliga priser</h2>
+      <p class="section-sub">Rabatt ges automatiskt vid fler plagg. Alla priser inkl. moms.</p>
+    </div>
+    <div class="price-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Produkt</th>
+            <th>1 st</th>
+            <th class="hl">3–4 st</th>
+            <th class="hl">5–9 st</th>
+            <th class="hl" style="color:#5FC882">10+ st</th>
+            <th>Tryckyta</th>
+          </tr>
+        </thead>
+        <tbody id="price-tbody"></tbody>
+      </table>
+    </div>
+    <p class="price-note">* Tvåsidig tryckning +89 kr/st &nbsp;·&nbsp; Bröstficka +49 kr/st &nbsp;·&nbsp; Specialfärger (neon, reflex) +39 kr/st &nbsp;·&nbsp; Fri frakt vid 10+ plagg</p>
+  </div>
+</section>
+
+<!-- BESTÄLL -->
+<section id="bestall">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Beställning</div>
+      <h2 class="section-title">Lägg din beställning</h2>
+      <p class="section-sub">Fyll i formuläret och ladda upp din logga. Vi återkommer med korrektur inom 24h.</p>
+    </div>
+    <div class="order-layout">
+      <div>
+        <div class="form-panel">
+          <div class="panel-title">Produkt och antal</div>
+          <div class="form-group">
+            <label>Välj produkt</label>
+            <select id="order-product" onchange="updateSummary()"><option value="">— Välj produkt —</option></select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Storlek</label>
+              <div class="chip-group" id="size-group">
+                <span class="chip active" onclick="selectChip(this,'size')">XS</span>
+                <span class="chip" onclick="selectChip(this,'size')">S</span>
+                <span class="chip" onclick="selectChip(this,'size')">M</span>
+                <span class="chip" onclick="selectChip(this,'size')">L</span>
+                <span class="chip" onclick="selectChip(this,'size')">XL</span>
+                <span class="chip" onclick="selectChip(this,'size')">XXL</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Antal plagg</label>
+              <input type="number" id="order-qty" value="1" min="1" max="999" onchange="updateSummary()" oninput="updateSummary()">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Tryckteknik</label>
+            <div class="chip-group">
+              <span class="chip active" onclick="selectChip(this,'tech')">Textilvinyl</span>
+              <span class="chip" onclick="selectChip(this,'tech')">Sublimering</span>
+              <span class="chip" onclick="selectChip(this,'tech')">Lasertransfer</span>
+            </div>
+            <div style="font-size:.72rem;color:#555;margin-top:.5rem;line-height:1.6">
+              <strong style="color:#888">Textilvinyl</strong> — skarpa loggor &amp; text, alla plaggfärger &nbsp;·&nbsp;
+              <strong style="color:#888">Sublimering</strong> — fullcolor på ljusa syntetplagg &nbsp;·&nbsp;
+              <strong style="color:#888">Lasertransfer</strong> — fungerar på mörka plagg
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Tryckets placering</label>
+            <div class="chip-group">
+              <span class="chip active" onclick="selectChip(this,'pos')">Bröst, vänster</span>
+              <span class="chip" onclick="selectChip(this,'pos')">Bröst, mitten</span>
+              <span class="chip" onclick="selectChip(this,'pos')">Rygg, stor</span>
+              <span class="chip" onclick="selectChip(this,'pos')">Ärm</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Antal färger i trycket</label>
+            <select id="order-colors" onchange="updateSummary()">
+              <option value="0">1 färg — ingår</option>
+              <option value="60">2 färger (+60 kr/st)</option>
+              <option value="110">3 färger (+110 kr/st)</option>
+              <option value="149">4+ färger, fullcolor (+149 kr/st)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-panel">
+          <div class="panel-title">Din logga</div>
+          <div class="upload-zone" onclick="document.getElementById('logo-file').click()">
+            <input type="file" id="logo-file" accept="image/*,.pdf,.ai,.eps,.svg" onchange="previewLogo(event)">
+            <div class="upload-icon">↑</div>
+            <div class="upload-title">Klicka eller dra hit din fil</div>
+            <div class="upload-sub">PNG · SVG · PDF · AI · EPS &nbsp;·&nbsp; <span>Max 50 MB</span></div>
+            <img id="logo-preview" alt="Förhandsgranskning">
+          </div>
+          <div id="logo-filename"></div>
+        </div>
+
+        <div class="form-panel">
+          <div class="panel-title">Kontakt och önskemål</div>
+          <div class="form-row">
+            <div class="form-group"><label>Namn</label><input type="text" id="order-name" placeholder="Anna Johansson"></div>
+            <div class="form-group"><label>Företag (valfritt)</label><input type="text" id="order-company" placeholder="Företaget AB"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>E-post</label><input type="email" id="order-email" placeholder="din@epost.se"></div>
+            <div class="form-group"><label>Telefon</label><input type="tel" id="order-phone" placeholder="070-000 00 00"></div>
+          </div>
+          <div class="form-group">
+            <label>Plaggets färg och övriga önskemål</label>
+            <textarea id="order-notes" placeholder="T.ex. 'Svart hoodie, vit logga på bröstet (ca 8 cm) och URL på ryggen'"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUMMARY -->
+      <div>
+        <div class="summary-panel">
+          <div class="stitle">Din beställning</div>
+          <div class="sum-row"><span>Produkt</span><strong id="sum-product">—</strong></div>
+          <div class="sum-row"><span>Storlek</span><strong id="sum-size">XS</strong></div>
+          <div class="sum-row"><span>Antal</span><strong id="sum-qty">1 st</strong></div>
+          <div class="sum-row"><span>Teknik</span><strong id="sum-tech">Textilvinyl</strong></div>
+          <div class="sum-row"><span>Placering</span><strong id="sum-pos">Bröst, vänster</strong></div>
+          <div class="sum-row"><span>Färger</span><strong id="sum-colors">1 färg</strong></div>
+          <div class="sum-row"><span>Logga</span><strong id="sum-logo" style="color:#444">Ej bifogad</strong></div>
+          <div class="sum-divider"></div>
+          <div id="discount-flag"></div>
+          <div class="sum-total-row"><span>Totalt inkl. moms</span><span class="total-num" id="sum-total">—</span></div>
+          <div style="font-size:.72rem;color:#444;margin-top:.4rem">Korrektur ingår. Betalning efter godkänt korrektur.</div>
+          <button class="submit-btn" onclick="submitOrder()">Skicka beställning</button>
+          <p class="submit-note">Du binder dig inte förrän du godkänt korrekturen</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="success-msg">
+      <div class="s-icon">✓</div>
+      <h3>Beställning mottagen</h3>
+      <p>Tack! Vi skickar ett korrektur till <span id="success-email"></span> inom 24 timmar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">FAQ</div>
+      <h2 class="section-title">Vanliga frågor</h2>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item"><div class="faq-q">Vilka trycktekniker erbjuder ni?</div><div class="faq-a">Vi arbetar med textilvinyl (skarpa loggor och text på alla plaggfärger), sublimering (fullcolor på ljusa syntetplagg) och lasertransfer (fungerar även på mörka plagg). Kepsar broderas via samarbetspartner för bästa resultat.</div></div>
+      <div class="faq-item"><div class="faq-q">Vilken teknik passar min logga bäst?</div><div class="faq-a">Enkel logga eller text → textilvinyl. Foto eller många färger på ljust syntetplagg → sublimering. Mörkt plagg med detaljrik design → lasertransfer. Tveka inte att fråga — vi hjälper dig välja rätt.</div></div>
+      <div class="faq-item"><div class="faq-q">Vilka filformat tar ni emot?</div><div class="faq-a">PNG, SVG, PDF, AI och EPS. JPG fungerar men högupplöst är alltid bäst för skarpa kanter.</div></div>
+      <div class="faq-item"><div class="faq-q">Hur lång är leveranstiden?</div><div class="faq-a">5–8 arbetsdagar från godkänt korrektur. Express (2–3 dagar) finns mot tillägg. Kepsar med brodyr: 7–10 dagar.</div></div>
+      <div class="faq-item"><div class="faq-q">Vad kostar frakt?</div><div class="faq-a">Frakt via PostNord från 69 kr. Fri frakt vid 10+ plagg.</div></div>
+      <div class="faq-item"><div class="faq-q">Kan ni göra fullcolor-tryck?</div><div class="faq-a">Ja — via sublimering på ljusa syntetplagg eller lasertransfer på bomull och mörka plagg. Inget extra tillägg för antal färger vid dessa tekniker.</div></div>
+      <div class="faq-item"><div class="faq-q">Vad händer om jag inte är nöjd?</div><div class="faq-a">Nöjd-kund-garanti. Avviker trycket från godkänt korrektur trycks det om utan kostnad.</div></div>
+      <div class="faq-item"><div class="faq-q">Jag saknar logga — kan ni hjälpa?</div><div class="faq-a">Vi erbjuder enkel grafisk hjälp mot timavgift. Hör av dig på info@klädverket.se.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo"><em>KLÄD</em>VERKET</div>
+    <p>Klädtryck från ett plagg &nbsp;·&nbsp; <a href="#">info@klädverket.se</a> &nbsp;·&nbsp; 010-000 00 00</p>
+    <p>© 2025 Klädverket. Alla rättigheter förbehållna.</p>
+  </div>
+</footer>
+
+<script>
+const PRODUCTS=[
+  {id:1,name:'T-shirt Unisex',     tag:'Populär',     desc:'Klassisk rundhals, 100% bomull, 20+ färger',       p1:159,p3:149,p5:139,p10:119,area:'30×35 cm',svg:'tshirt',c:'#E8E4DC'},
+  {id:2,name:'T-shirt Dam',        tag:null,          desc:'Figurnära passform, ring-spunnet bomull',           p1:169,p3:159,p5:149,p10:129,area:'25×30 cm',svg:'tshirt',c:'#DDD8D0'},
+  {id:3,name:'T-shirt Barn',       tag:null,          desc:'OEKO-TEX, strl 98–164, mjuk och hållbar',          p1:129,p3:119,p5:109,p10:95, area:'20×25 cm',svg:'tshirt',c:'#C8E4D0'},
+  {id:4,name:'Hoodie Unisex',      tag:'Bästsäljare', desc:'320 g/m², fleecefodrad, känguru-ficka',            p1:349,p3:329,p5:309,p10:279,area:'30×35 cm',svg:'hoodie',c:'#D4D0C8'},
+  {id:5,name:'Zip-hoodie',         tag:null,          desc:'Dragkedja hela vägen, bred tryckaryta',             p1:399,p3:379,p5:359,p10:319,area:'28×32 cm',svg:'hoodie',c:'#C4C0B8'},
+  {id:6,name:'Sweatshirt',         tag:null,          desc:'280 g/m², borstad insida, rundhals',                p1:299,p3:279,p5:259,p10:229,area:'30×35 cm',svg:'sweat', c:'#D8D4CC'},
+  {id:7,name:'Softshell-jacka',    tag:null,          desc:'Vind- och vattenavvisande, 3-lager stretch',        p1:549,p3:519,p5:489,p10:449,area:'25×28 cm',svg:'jacket',c:'#B0C0BC'},
+  {id:8,name:'Fleecejacka',        tag:null,          desc:'300 g anti-pilling fleece, bröstfickor',            p1:449,p3:419,p5:389,p10:349,area:'25×28 cm',svg:'jacket',c:'#C8D4D0'},
+  {id:9,name:'Polo-tröja',         tag:null,          desc:'Pikéväv, tvåknäppt krage, 220 g/m²',               p1:249,p3:229,p5:209,p10:179,area:'10×10 cm',svg:'polo',  c:'#BFD0C4'},
+  {id:10,name:'Funktions-T-shirt', tag:null,          desc:'Fuktavledande polyester, snabbtorkande UPF30',      p1:199,p3:189,p5:175,p10:155,area:'30×35 cm',svg:'tshirt',c:'#D0D8E0'},
+  {id:11,name:'Arbetsväst',        tag:'Nyhet',       desc:'Reflexdetaljer, EN ISO 13688, dubbla fickor',       p1:299,p3:279,p5:259,p10:229,area:'22×25 cm',svg:'vest',  c:'#F0C840'},
+  {id:12,name:'Keps',              tag:'Brodyr',      desc:'Strukturerad 6-panel, bomull twill — brodyr via partner, premiumresultat',        p1:229,p3:210,p5:195,p10:175,area:'8×6 cm', svg:'cap',   c:'#2A2A24'},
+  {id:13,name:'Mössa',             tag:null,          desc:'Dubbelvikt ribbstickad akryl, one-size',             p1:149,p3:139,p5:129,p10:115,area:'8×6 cm', svg:'beanie',c:'#3A3830'},
+  {id:14,name:'Tote bag',          tag:null,          desc:'5 oz naturlig canvas, 38×42 cm, dubbla handtag',    p1:99, p3:89, p5:79, p10:65, area:'30×35 cm',svg:'tote',  c:'#D4C8A8'},
+  {id:15,name:'Förkläde',          tag:null,          desc:'Tvättäkta canvas, justerbar halsbygel, ficka',       p1:199,p3:185,p5:169,p10:149,area:'25×30 cm',svg:'apron', c:'#D4C8A8'},
+];
+
+const SVG={
+  tshirt:c=>`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><path d="M38,22 L14,34 L21,55 L38,49 L38,100 L82,100 L82,49 L99,55 L106,34 L82,22 Q71,16 60,17 Q49,16 38,22Z" fill="${c}" stroke="#808080" stroke-width="1.2"/><rect x="46" y="55" width="28" height="20" rx="2" fill="#C8A84B" opacity=".95"/><text x="60" y="69" text-anchor="middle" fill="#0D0D0D" font-size="6.5" font-family="sans-serif" font-weight="900">LOGO</text></svg>`,
+  hoodie:c=>`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><path d="M60,12 Q50,12 46,19 L32,22 L10,36 L18,58 L32,52 L32,104 L88,104 L88,52 L102,58 L110,36 L88,22 L74,19 Q70,12 60,12Z" fill="${c}" stroke="#808080" stroke-width="1.2"/><path d="M46,19 Q50,27 60,28 Q70,27 74,19" fill="none" stroke="#909090" stroke-width="1.8"/><rect x="42" y="42" width="36" height="26" rx="2" fill="#C8A84B" opacity=".95"/><text x="60" y="59" text-anchor="middle" fill="#0D0D0D" font-size="6.5" font-family="sans-serif" font-weight="900">LOGO</text></svg>`,
+  sweat:c=>`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><path d="M38,22 L14,34 L21,55 L38,49 L38,100 L82,100 L82,49 L99,55 L106,34 L82,22 Q71,16 60,17 Q49,16 38,22Z" fill="${c}" stroke="#808080" stroke-width="1.2"/><path d="M48,17 Q60,23 72,17" fill="none" stroke="#909090" stroke-width="1.8" stroke-linecap="round"/><rect x="44" y="55" width="32" height="22" rx="2" fill="#C8A84B" opacity=".95"/><text x="60" y="70" text-anchor="middle" fill="#0D0D0D" font-size="6.5" font-family="sans-serif" font-weight="900">LOGO</text></svg>`,
+  jacket:c=>`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><path d="M38,20 L14,34 L22,54 L38,48 L38,100 L82,100 L82,48 L98,54 L106,34 L82,20 L72,18 L60,23 L48,18Z" fill="${c}" stroke="#808080" stroke-width="1.2"/><line x1="60" y1="23" x2="60" y2="100" stroke="#909090" stroke-width="1.5"/><rect x="62" y="36" width="16" height="13" rx="2" fill="#C8A84B" opacity=".95"/><text x="70" y="46" text-anchor="middle" fill="#0D0D0D" font-size="5.5" font-family="sans-serif" font-weight="900">LOGO</text></svg>`,
+  polo:c=>`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><path d="M38,22 L16,36 L24,55 L38,49 L38,100 L82,100 L82,49 L96,55 L104,36 L82,22 L72,19 L66,28 L60,30 L54,28 L48,19Z" fill="${c}" stroke="#80A090" stroke-width="1.2"/><path d="M54,19 L54,36 L60,39 L66,36 L66,19" fill="#B0C4B8" stroke="#90AC9C" stroke-width=".9"/><circle cx="51" cy="21" r="1.5" fill="#6A8A72"/><circle cx="51" cy="26" r="1.5" fill="#6A8A72"/><circle cx="51" cy="31" r="1.5" fill="#6A8A72"/><rect x="44" y="54" width="18" height="14" rx="2" fill="#C8A84B" opacity=".95"/><text x="53" y="64" text-anchor="middle" fill="#0D0D0D" font-size="6" font-family="sans-serif" font-weight="900">LOGO</text></svg>`,
+  vest:c=>`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><path d="M42,18 L26,30 L30,52 L42,48 L42,100 L78,100 L78,48 L90,52 L94,30 L78,18 L68,16 L60,22 L52,16Z" fill="${c}" stroke="#D4B820" stroke-width="1.2"/><line x1="60" y1="22" x2="60" y2="100" stroke="#C4A810" stroke-width="1.5"/><path d="M26,58 L42,58" stroke="#E8D040" stroke-width="2.5" opacity=".7"/><path d="M78,58 L94,58" stroke="#E8D040" stroke-width="2.5" opacity=".7"/><rect x="46" y="48" width="28" height="18" rx="2" fill="#C8A84B" opacity=".95"/><text x="60" y="60" text-anchor="middle" fill="#0D0D0D" font-size="6.5" font-family="sans-serif" font-weight="900">LOGO</text></svg>`,
+  cap:c=>`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><path d="M22,72 Q22,42 60,35 Q98,42 98,72Z" fill="${c}"/><rect x="18" y="70" width="84" height="12" rx="3" fill="${c==='#2A2A24'?'#3A3A34':'#B8B4AC'}"/><path d="M16,76 L60,84 L60,90 Q34,87 16,76Z" fill="#F0EDE6"/><line x1="60" y1="35" x2="60" y2="82" stroke="${c==='#2A2A24'?'#4A4A44':'#A8A4A0'}" stroke-width="1"/><rect x="46" y="50" width="28" height="14" rx="2" fill="#C8A84B" opacity=".95"/><text x="60" y="61" text-anchor="middle" fill="#0D0D0D" font-size="6" font-family="sans-serif" font-weight="900">LOGO</text></svg>`,
+  beanie:c=>`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><ellipse cx="60" cy="60" rx="40" ry="28" fill="${c}"/><rect x="20" y="78" width="80" height="10" rx="2" fill="${c}" opacity=".85"/><rect x="20" y="86" width="80" height="9" rx="2" fill="${c}" opacity=".7"/><circle cx="60" cy="35" r="5" fill="${c}"/><rect x="43" y="55" width="34" height="18" rx="2" fill="#C8A84B" opacity=".95"/><text x="60" y="68" text-anchor="middle" fill="#0D0D0D" font-size="6.5" font-family="sans-serif" font-weight="900">LOGO</text></svg>`,
+  tote:c=>`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><path d="M44,30 Q44,18 60,18 Q76,18 76,30" fill="none" stroke="#B0AA98" stroke-width="3" stroke-linecap="round"/><rect x="26" y="30" width="68" height="78" rx="4" fill="${c}" stroke="#B0AA98" stroke-width="1.2"/><rect x="38" y="54" width="44" height="30" rx="2" fill="#C8A84B" opacity=".95"/><text x="60" y="73" text-anchor="middle" fill="#0D0D0D" font-size="8" font-family="sans-serif" font-weight="900">LOGO</text></svg>`,
+  apron:c=>`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><path d="M38,10 Q60,7 82,10 L82,18 Q60,15 38,18Z" fill="${c}" stroke="#B0AA98" stroke-width="1"/><rect x="32" y="18" width="56" height="96" rx="4" fill="${c}" stroke="#B0AA98" stroke-width="1.2"/><path d="M32,20 L26,42 L32,44" fill="none" stroke="#B0AA98" stroke-width="1.2"/><path d="M88,20 L94,42 L88,44" fill="none" stroke="#B0AA98" stroke-width="1.2"/><rect x="42" y="50" width="36" height="24" rx="2" fill="#C8A84B" opacity=".95"/><text x="60" y="66" text-anchor="middle" fill="#0D0D0D" font-size="7" font-family="sans-serif" font-weight="900">LOGO</text></svg>`,
+};
+
+function getS(t,c){return(SVG[t]||SVG.tshirt)(c);}
+
+function renderHero(){
+  const items=[{pid:1},{pid:4},{pid:9},{pid:12}];
+  document.getElementById('hero-visual').innerHTML=items.map(({pid})=>{
+    const p=PRODUCTS.find(x=>x.id===pid);
+    return`<div class="hv-card"><div>${getS(p.svg,p.c)}</div><div class="hvl">${p.name}</div><div class="hvp">från ${p.p1} kr</div></div>`;
+  }).join('');
+}
+
+function renderProducts(){
+  document.getElementById('products-grid').innerHTML=PRODUCTS.map(p=>{
+    const tc=p.tag==='Nyhet'?'prod-tag new-t':'prod-tag';
+    return`<div class="product-card" id="pc-${p.id}" onclick="selectProduct(${p.id})">
+      <div class="product-img-area">${getS(p.svg,p.c)}${p.tag?`<span class="${tc}">${p.tag}</span>`:''}</div>
+      <div class="product-body">
+        <div class="product-name">${p.name}</div>
+        <div class="product-desc">${p.desc}</div>
+        <div class="product-footer">
+          <div class="product-price">från ${p.p1} kr <small>/ st</small></div>
+          <button class="select-btn" id="sbtn-${p.id}">Välj</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderTable(){
+  document.getElementById('price-tbody').innerHTML=PRODUCTS.map(p=>`
+    <tr>
+      <td class="name">${p.name}</td>
+      <td>${p.p1} kr</td>
+      <td class="p-disc">${p.p3} kr</td>
+      <td class="p-disc">${p.p5} kr</td>
+      <td class="p-best">${p.p10} kr</td>
+      <td style="color:#444;font-size:.82rem">${p.area}</td>
+    </tr>`).join('');
+}
+
+function populateSelect(){
+  const s=document.getElementById('order-product');
+  PRODUCTS.forEach(p=>{const o=document.createElement('option');o.value=p.id;o.textContent=p.name;s.appendChild(o);});
+}
+
+function selectProduct(id){
+  document.querySelectorAll('.product-card').forEach(c=>c.classList.remove('selected'));
+  document.querySelectorAll('.select-btn').forEach(b=>{b.classList.remove('active');b.textContent='Välj';});
+  document.getElementById('pc-'+id).classList.add('selected');
+  const btn=document.getElementById('sbtn-'+id);
+  btn.classList.add('active');btn.textContent='✓ Vald';
+  document.getElementById('order-product').value=id;
+  updateSummary();
+  document.getElementById('bestall').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+const CS={size:'XS',tech:'Textilvinyl',pos:'Bröst, vänster'};
+function selectChip(el,k){
+  el.parentElement.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');CS[k]=el.textContent;
+  if(k==='size')document.getElementById('sum-size').textContent=el.textContent;
+  if(k==='tech')document.getElementById('sum-tech').textContent=el.textContent;
+  if(k==='pos')document.getElementById('sum-pos').textContent=el.textContent;
+}
+
+function updateSummary(){
+  const pid=parseInt(document.getElementById('order-product').value);
+  const qty=Math.max(1,parseInt(document.getElementById('order-qty').value)||1);
+  const extra=parseInt(document.getElementById('order-colors').value)||0;
+  const p=PRODUCTS.find(x=>x.id===pid);
+  document.getElementById('sum-qty').textContent=qty+' st';
+  document.getElementById('sum-colors').textContent=document.getElementById('order-colors').selectedOptions[0].text.split('(')[0].trim();
+  if(!p){document.getElementById('sum-product').textContent='—';document.getElementById('sum-total').textContent='—';document.getElementById('discount-flag').innerHTML='';return;}
+  document.getElementById('sum-product').textContent=p.name;
+  let u,flag='';
+  if(qty>=10){u=p.p10;flag='<span class="disc-badge">10+ rabatt tillämpad</span>';}
+  else if(qty>=5){u=p.p5;flag='<span class="disc-badge">5+ rabatt tillämpad</span>';}
+  else if(qty>=3){u=p.p3;flag='<span class="disc-badge">3+ rabatt tillämpad</span>';}
+  else u=p.p1;
+  document.getElementById('sum-total').textContent=((u+extra)*qty).toLocaleString('sv-SE')+' kr';
+  document.getElementById('discount-flag').innerHTML=flag;
+}
+
+function previewLogo(e){
+  const f=e.target.files[0];if(!f)return;
+  document.getElementById('logo-filename').textContent='Bifogad: '+f.name;
+  document.getElementById('sum-logo').textContent='✓ Bifogad';
+  document.getElementById('sum-logo').style.color='#C8A84B';
+  if(f.type.startsWith('image/')){const r=new FileReader();r.onload=ev=>{const i=document.getElementById('logo-preview');i.src=ev.target.result;i.style.display='block';};r.readAsDataURL(f);}
+}
+
+function submitOrder(){
+  const name=document.getElementById('order-name').value.trim();
+  const email=document.getElementById('order-email').value.trim();
+  const product=document.getElementById('order-product').value;
+  if(!name||!email||!product){alert('Fyll i namn, e-post och välj en produkt.');return;}
+  document.getElementById('success-email').textContent=email;
+  document.getElementById('success-msg').style.display='block';
+  document.getElementById('success-msg').scrollIntoView({behavior:'smooth'});
+  document.querySelector('.submit-btn').disabled=true;
+  document.querySelector('.submit-btn').textContent='✓ Beställning skickad';
+}
+
+renderHero();renderProducts();renderTable();populateSelect();
+</script>
+</body>
+</html>
