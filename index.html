@@ -64,13 +64,19 @@ nav{background:var(--black);border-bottom:1px solid var(--border);position:stick
 .hc{font-family:var(--fh);font-size:.88rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#888;display:flex;align-items:center;gap:.5rem}
 .hc::before{content:'✓';color:var(--gold);font-size:1rem}
 /* Hero visual */
-.hero-visual{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
-.hv-card{background:var(--dark2);border:1px solid var(--border2);padding:.75rem .75rem;text-align:center;transition:border-color .3s,transform .3s}
-.hv-card:hover{border-color:var(--gold);transform:translateY(-3px)}
-.hv-card svg{width:60px;height:60px}
-.hv-card img{width:100%;height:90px;object-fit:cover;object-position:top}
-.hv-card .hvl{font-family:var(--fh);font-size:.85rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;margin-top:.4rem;color:var(--off)}
-.hv-card .hvp{font-size:.72rem;color:var(--gold);font-weight:600;margin-top:.1rem;font-family:var(--fh);letter-spacing:.04em}
+.hero-visual{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.hv-card{position:relative;overflow:hidden;cursor:pointer;background:var(--dark2);transition:transform .3s;aspect-ratio:3/4}
+.hv-card:hover{transform:scale(1.02)}
+.hv-card img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform .4s}
+.hv-card:hover img{transform:scale(1.06)}
+.hv-card svg{width:100%;height:100%;position:absolute;inset:0;object-fit:contain;padding:1.5rem}
+.hv-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.2) 50%,transparent 100%)}
+.hv-card:hover .hv-overlay{background:linear-gradient(to top,rgba(0,0,0,.9) 0%,rgba(0,0,0,.3) 50%,transparent 100%)}
+.hv-info{position:absolute;bottom:0;left:0;right:0;padding:.9rem 1rem}
+.hv-card .hvl{font-family:var(--fh);font-size:1rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:#fff;display:block;line-height:1}
+.hv-card .hvp{font-size:.78rem;color:var(--gold);font-weight:700;margin-top:.2rem;font-family:var(--fh);letter-spacing:.04em;display:block}
+.hv-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.hv-card:hover::after{transform:scaleX(1)}
 
 /* ── CHECKS STRIP ── */
 .checks-strip{background:var(--dark2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:.9rem 2rem}
@@ -539,7 +545,17 @@ function renderHero(){
   const items=[{pid:1},{pid:4},{pid:9},{pid:12}];
   document.getElementById('hero-visual').innerHTML=items.map(({pid})=>{
     const p=PRODUCTS.find(x=>x.id===pid);
-    return`<div class="hv-card"><div>${getImg(p.svg,p.c)}</div><div class="hvl">${p.name}</div><div class="hvp">från ${p.p1} kr</div></div>`;
+    const imgHtml = PHOTOS[p.svg]
+    ? `<img src="${PHOTOS[p.svg]}" alt="${p.name}" loading="lazy">`
+    : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">${getS(p.svg,p.c)}</div>`;
+  return`<div class="hv-card" onclick="selectProduct(${p.id})">
+    ${imgHtml}
+    <div class="hv-overlay"></div>
+    <div class="hv-info">
+      <span class="hvl">${p.name}</span>
+      <span class="hvp">från ${p.p1} kr</span>
+    </div>
+  </div>`;
   }).join('');
 }
 
