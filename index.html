@@ -443,8 +443,8 @@ footer a:hover{color:var(--gold)}
           <div id="discount-flag"></div>
           <div class="sum-total-row"><span>Totalt inkl. moms</span><span class="total-num" id="sum-total">—</span></div>
           <div style="font-size:.72rem;color:#444;margin-top:.4rem">Korrektur ingår. Betalning efter godkänt korrektur.</div>
-          <button class="submit-btn" onclick="submitOrder()">Skicka beställning</button>
-          <p class="submit-note">Du binder dig inte förrän du godkänt korrekturen</p>
+          <button class="submit-btn" id="pay-btn" onclick="submitOrder()">Skicka beställning →</button>
+          <p class="submit-note">Vi skickar korrektur inom 24h · Betalning sker efter godkänt korrektur</p>
         </div>
       </div>
     </div>
@@ -618,16 +618,60 @@ function previewLogo(e){
   if(f.type.startsWith('image/')){const r=new FileReader();r.onload=ev=>{const i=document.getElementById('logo-preview');i.src=ev.target.result;i.style.display='block';};r.readAsDataURL(f);}
 }
 
-function submitOrder(){
+async function submitOrder(){
   const name=document.getElementById('order-name').value.trim();
   const email=document.getElementById('order-email').value.trim();
-  const product=document.getElementById('order-product').value;
-  if(!name||!email||!product){alert('Fyll i namn, e-post och välj en produkt.');return;}
-  document.getElementById('success-email').textContent=email;
-  document.getElementById('success-msg').style.display='block';
-  document.getElementById('success-msg').scrollIntoView({behavior:'smooth'});
-  document.querySelector('.submit-btn').disabled=true;
-  document.querySelector('.submit-btn').textContent='✓ Beställning skickad';
+  const pid=parseInt(document.getElementById('order-product').value);
+  const qty=Math.max(1,parseInt(document.getElementById('order-qty').value)||1);
+  const extra=parseInt(document.getElementById('order-colors').value)||0;
+  const p=PRODUCTS.find(x=>x.id===pid);
+
+  if(!name||!email||!pid){alert('Fyll i namn, e-post och välj en produkt.');return;}
+
+  let unit;
+  if(qty>=10)unit=p.p10;
+  else if(qty>=5)unit=p.p5;
+  else if(qty>=3)unit=p.p3;
+  else unit=p.p1;
+  const unitPrice=unit+extra;
+  const totalPrice=(unitPrice*qty).toLocaleString('sv-SE');
+
+  const btn=document.getElementById('pay-btn');
+  btn.disabled=true;
+  btn.textContent='Skickar beställning...';
+
+  try{
+    const res=await fetch('https://formspree.io/f/xgoqnaob',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        namn: name,
+        epost: email,
+        foretag: document.getElementById('order-company').value.trim(),
+        telefon: document.getElementById('order-phone').value.trim(),
+        produkt: p.name,
+        antal: qty+' st',
+        storlek: CS.size,
+        teknik: CS.tech,
+        placering: CS.pos,
+        farger: document.getElementById('order-colors').selectedOptions[0].text.split('(')[0].trim(),
+        totalpris: totalPrice+' kr',
+        onskemol: document.getElementById('order-notes').value.trim(),
+      })
+    });
+    if(res.ok){
+      btn.textContent='✓ Beställning skickad!';
+      document.getElementById('success-msg').style.display='block';
+      document.getElementById('success-email').textContent=email;
+      document.getElementById('success-msg').scrollIntoView({behavior:'smooth'});
+    } else {
+      throw new Error('Formspree svarade med fel');
+    }
+  } catch(err){
+    btn.disabled=false;
+    btn.textContent='Skicka beställning →';
+    alert('Något gick fel. Försök igen eller mejla oss på info@klädverket.se');
+  }
 }
 
 renderHero();renderProducts();renderTable();populateSelect();
