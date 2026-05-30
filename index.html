@@ -230,6 +230,22 @@ footer a:hover{color:var(--gold)}
 .add-to-cart-btn{display:block;width:100%;padding:.85rem;background:transparent;color:var(--gold);border:2px solid var(--gold);font-family:var(--fh);font-weight:900;font-size:.95rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .2s;border-radius:3px;margin-bottom:.75rem}
 .add-to-cart-btn:hover{background:var(--gold);color:#0D0D0D}
 .cart-divider{height:1px;background:#1E1E1E;margin:1rem 0}
+
+#dekaler{background:var(--black)}
+.dekal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:var(--border)}
+.dekal-card{background:var(--dark2);padding:1.75rem;transition:background .2s;position:relative}
+.dekal-card:hover{background:var(--dark3)}
+.dekal-name{font-family:var(--fh);font-weight:900;font-size:1.1rem;text-transform:uppercase;letter-spacing:.04em;color:var(--white);margin-bottom:.4rem}
+.dekal-desc{font-size:.8rem;color:#666;line-height:1.55;margin-bottom:1.1rem}
+.dekal-sizes{display:grid;grid-template-columns:repeat(4,1fr);gap:.4rem}
+.dekal-size{background:#111;border:1px solid #2A2A2A;padding:.5rem .3rem;text-align:center;border-radius:3px;transition:border-color .2s}
+.dekal-size:hover{border-color:var(--gold)}
+.dekal-size .sz{font-family:var(--fh);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#555;display:block}
+.dekal-size .sp{font-family:var(--fh);font-size:.95rem;font-weight:900;color:var(--gold);display:block;margin-top:.15rem}
+.dekal-size.na .sp{color:#2A2A2A}
+.dekal-size.na .sz{color:#2A2A2A}
+.dekal-note{margin-top:.85rem;font-size:.72rem;color:#3A3A3A;font-family:var(--fh);letter-spacing:.06em;text-transform:uppercase}
+.dekal-note em{color:#555;font-style:normal}
 </style>
 </head>
 <body>
@@ -241,6 +257,7 @@ footer a:hover{color:var(--gold)}
     <a class="nav-logo" href="#"><em>KLÄD</em>VERKET</a>
     <ul class="nav-links">
       <li><a href="#produkter">Kläder</a></li>
+      <li><a href="#dekaler">Dekaler</a></li>
       <li><a href="#priser">Priser</a></li>
       <li><a href="#hur">Hur det funkar</a></li>
       <li><a href="#faq">FAQ</a></li>
@@ -468,6 +485,19 @@ footer a:hover{color:var(--gold)}
   </div>
 </section>
 
+<!-- DEKALER -->
+<section id="dekaler">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Dekaler</div>
+      <h2 class="section-title">Dekaler &amp; skyltar</h2>
+      <p class="section-sub">UV-beständig vinyl för fordon, fönster, väggar och mer. Precisionsskurna — max 2 färger.</p>
+    </div>
+    <div class="dekal-grid" id="dekal-grid"></div>
+    <p class="price-note" style="margin-top:1.25rem">* Priser per styck inkl. moms &nbsp;·&nbsp; Max 2 färger &nbsp;·&nbsp; Leverans 3–5 dagar &nbsp;·&nbsp; Fri frakt vid order över 500 kr</p>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section id="faq">
   <div class="container">
@@ -515,6 +545,15 @@ const PRODUCTS=[
   {id:15,name:'Förkläde',          tag:null,          desc:'Tvättäkta canvas, justerbar halsbygel, ficka',       p1:279,p3:259,p5:239,p10:215,area:'25×30 cm',svg:'apron', c:'#D4C8A8'},
 ];
 
+const DEKALER=[
+  {id:'d1',name:'Bildekal',      desc:'UV-beständig vinyl, tål väder och vind, perfekt för fordon och maskiner',  a5:99, a4:149,a3:199,stor:349,tag:'Populär'},
+  {id:'d2',name:'Fönsterdekal',  desc:'Genomskinlig eller frostad vinyl, monteras insida eller utsida',           a5:109,a4:159,a3:219,stor:379,tag:null},
+  {id:'d3',name:'Väggdekal',     desc:'Inomhusvinyl för kontor, butik eller verkstad',                            a5:99, a4:149,a3:199,stor:349,tag:null},
+  {id:'d4',name:'Hjälmdekal',    desc:'Slitstark vinyl för alla ytor — bygg, MC eller skidhjälm',                 a5:99, a4:129,a3:null,stor:null,tag:null},
+  {id:'d5',name:'Fordonsdekal',  desc:'Större dekal för bil, lastbil, skåpbil eller släp',                        a5:null,a4:199,a3:299,stor:499,tag:'Nyhet'},
+  {id:'d6',name:'Laptopdekal',   desc:'Precisionsskuren, lämnar inga märken vid borttagning',                    a5:79, a4:109,a3:null,stor:null,tag:null},
+];
+
 const SVG={
   tshirt:c=>`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><path d="M38,22 L14,34 L21,55 L38,49 L38,100 L82,100 L82,49 L99,55 L106,34 L82,22 Q71,16 60,17 Q49,16 38,22Z" fill="${c}" stroke="#808080" stroke-width="1.2"/><rect x="46" y="55" width="28" height="20" rx="2" fill="#C8A84B" opacity=".95"/><text x="60" y="69" text-anchor="middle" fill="#0D0D0D" font-size="6.5" font-family="sans-serif" font-weight="900">LOGO</text></svg>`,
   hoodie:c=>`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><path d="M60,12 Q50,12 46,19 L32,22 L10,36 L18,58 L32,52 L32,104 L88,104 L88,52 L102,58 L110,36 L88,22 L74,19 Q70,12 60,12Z" fill="${c}" stroke="#808080" stroke-width="1.2"/><path d="M46,19 Q50,27 60,28 Q70,27 74,19" fill="none" stroke="#909090" stroke-width="1.8"/><rect x="42" y="42" width="36" height="26" rx="2" fill="#C8A84B" opacity=".95"/><text x="60" y="59" text-anchor="middle" fill="#0D0D0D" font-size="6.5" font-family="sans-serif" font-weight="900">LOGO</text></svg>`,
@@ -539,6 +578,23 @@ const PHOTOS={
 function getImg(type,c){
   if(PHOTOS[type]) return `<img src="${PHOTOS[type]}" alt="${type}" loading="lazy">`;
   return getS(type,c);
+}
+
+function renderDekaler(){
+  const grid=document.getElementById('dekal-grid');
+  grid.innerHTML=DEKALER.map(d=>{
+    const tc=d.tag==='Nyhet'?'prod-tag new-t':'prod-tag';
+    const tagHtml=d.tag?`<span class="${tc}">${d.tag}</span>`:'';
+    const sizes=[{l:'A5',p:d.a5},{l:'A4',p:d.a4},{l:'A3',p:d.a3},{l:'Stor',p:d.stor}];
+    const sizesHtml=sizes.map(s=>`<div class="dekal-size${!s.p?' na':''}"><span class="sz">${s.l}</span><span class="sp">${s.p?s.p+' kr':'—'}</span></div>`).join('');
+    return`<div class="dekal-card">
+      ${tagHtml}
+      <div class="dekal-name">${d.name}</div>
+      <div class="dekal-desc">${d.desc}</div>
+      <div class="dekal-sizes">${sizesHtml}</div>
+      <div class="dekal-note">Färger: <em>Max 2 färger per dekal</em></div>
+    </div>`;
+  }).join('');
 }
 
 function renderHero(){
@@ -742,7 +798,7 @@ async function submitOrder(){
   }
 }
 
-renderHero();renderProducts();renderTable();populateSelect();
+renderHero();renderProducts();renderDekaler();renderTable();populateSelect();
 </script>
 </body>
 </html>
