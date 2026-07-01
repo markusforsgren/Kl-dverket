@@ -338,7 +338,7 @@ footer a:hover{color:var(--accent)}
 .dt-close:hover{background:var(--accent-light)}
 .dt-canvas-wrap{position:relative;width:320px;height:380px}
 #dt-garment-svg{width:100%;height:100%}
-#dt-canvas{position:absolute;top:0;left:0;width:100%;height:100%;cursor:crosshair}
+#dt-canvas{position:absolute;top:0;left:0;width:100%;height:100%;cursor:default;touch-action:none}
 .dt-garment-btns{display:flex;gap:.5rem;margin-top:1.25rem;flex-wrap:wrap;justify-content:center}
 .dt-garment-btn{padding:.4rem 1rem;border:1.5px solid var(--border);border-radius:20px;background:var(--white);font-size:.8rem;font-weight:600;cursor:pointer;transition:all .15s}
 .dt-garment-btn.active{background:var(--ink);color:#fff;border-color:var(--ink)}
@@ -967,9 +967,13 @@ function openDT(pid){
   document.getElementById('dt-logo-name').textContent='';
   document.getElementById('dt-size-ctrl').style.display='none';
   document.getElementById('dt-file').value='';
+  document.getElementById('dt-drag-hint').style.display='none';
+  const cv2=document.getElementById('dt-canvas');
+  dtLogoX=cv2.width/2; dtLogoY=cv2.height*0.42;
   renderDtGarments();renderDtColors();renderDtSizes();
   document.getElementById('dt-qty-display').textContent=1;
   dtDraw();
+  dtSetupDrag();
   document.getElementById('dt-overlay').classList.add('open');
   document.body.style.overflow='hidden';
 }
@@ -1001,28 +1005,104 @@ function dtLogo(e){
   const f=e.target.files[0];if(!f)return;
   document.getElementById('dt-logo-name').textContent='📎 '+f.name;
   const r=new FileReader();
-  r.onload=ev=>{const img=new Image();img.onload=()=>{dtLogoImg=img;document.getElementById('dt-size-ctrl').style.display='block';dtDraw();};img.src=ev.target.result;};
+  r.onload=ev=>{
+    const img=new Image();
+    img.onload=()=>{
+      dtLogoImg=img;
+      // Reset position to center of garment
+      const cv=document.getElementById('dt-canvas');
+      dtLogoX=cv.width/2;
+      dtLogoY=cv.height*0.42;
+      document.getElementById('dt-size-ctrl').style.display='block';
+      document.getElementById('dt-drag-hint').style.display='block';
+      dtDraw();
+    };
+    img.src=ev.target.result;
+  };
   r.readAsDataURL(f);
 }
+
+// Logo position state
+let dtLogoX=160, dtLogoY=160;
+let dtDragging=false, dtDragOffX=0, dtDragOffY=0;
 
 function dtDraw(){
   document.getElementById('dt-svg').innerHTML=DT_SVG[dtG.svg]?DT_SVG[dtG.svg](dtColor):'';
   const cv=document.getElementById('dt-canvas'),ctx=cv.getContext('2d');
   ctx.clearRect(0,0,cv.width,cv.height);
-  const cx=cv.width/2, cy=cv.height*0.42;
   if(dtLogoImg){
     dtLogoSz=parseInt(document.getElementById('dt-logo-size').value);
     const w=dtLogoSz, h=dtLogoSz*(dtLogoImg.height/dtLogoImg.width);
-    ctx.drawImage(dtLogoImg,cx-w/2,cy-h/2,w,h);
+    ctx.drawImage(dtLogoImg,dtLogoX-w/2,dtLogoY-h/2,w,h);
+    // Draw subtle drag handle border when hovering
+    if(dtHovering){
+      ctx.strokeStyle='rgba(212,82,26,.5)';
+      ctx.lineWidth=1.5;
+      ctx.setLineDash([4,3]);
+      ctx.strokeRect(dtLogoX-w/2-2,dtLogoY-h/2-2,w+4,h+4);
+      ctx.setLineDash([]);
+    }
   }
   const txt=document.getElementById('dt-text').value;
   if(txt){
     ctx.font='bold 15px Plus Jakarta Sans,sans-serif';
     ctx.fillStyle=dtColor==='#FFFFFF'?'#1A1814':'#FFFFFF';
     ctx.textAlign='center';
-    ctx.fillText(txt,cx,cy+(dtLogoImg?dtLogoSz*0.55+24:8));
+    ctx.fillText(txt,cv.width/2,dtLogoImg?dtLogoY+dtLogoSz*0.55+20:cv.height*0.5);
   }
   dtUpdatePrice();
+}
+
+// Hit test — is point inside logo?
+let dtHovering=false;
+function dtHitLogo(x,y){
+  if(!dtLogoImg) return false;
+  const w=dtLogoSz, h=dtLogoSz*(dtLogoImg.height/dtLogoImg.width);
+  return x>=dtLogoX-w/2-6 && x<=dtLogoX+w/2+6 && y>=dtLogoY-h/2-6 && y<=dtLogoY+h/2+6;
+}
+
+function dtCanvasXY(e){
+  const cv=document.getElementById('dt-canvas');
+  const rect=cv.getBoundingClientRect();
+  const scaleX=cv.width/rect.width, scaleY=cv.height/rect.height;
+  const clientX=e.touches?e.touches[0].clientX:e.clientX;
+  const clientY=e.touches?e.touches[0].clientY:e.clientY;
+  return{x:(clientX-rect.left)*scaleX, y:(clientY-rect.top)*scaleY};
+}
+
+// Setup drag events after DT opens
+function dtSetupDrag(){
+  const cv=document.getElementById('dt-canvas');
+  cv.style.cursor='default';
+
+  cv.onmousedown=cv.ontouchstart=function(e){
+    const {x,y}=dtCanvasXY(e);
+    if(dtHitLogo(x,y)){
+      dtDragging=true;
+      dtDragOffX=x-dtLogoX;
+      dtDragOffY=y-dtLogoY;
+      cv.style.cursor='grabbing';
+      e.preventDefault();
+    }
+  };
+  cv.onmousemove=cv.ontouchmove=function(e){
+    const {x,y}=dtCanvasXY(e);
+    if(dtDragging){
+      dtLogoX=Math.max(10,Math.min(cv.width-10,x-dtDragOffX));
+      dtLogoY=Math.max(10,Math.min(cv.height-10,y-dtDragOffY));
+      dtDraw();
+      e.preventDefault();
+    } else {
+      const hit=dtHitLogo(x,y);
+      cv.style.cursor=hit?'grab':'default';
+      if(hit!==dtHovering){dtHovering=hit;dtDraw();}
+    }
+  };
+  cv.onmouseup=cv.ontouchend=function(){
+    dtDragging=false;
+    document.getElementById('dt-canvas').style.cursor=dtHovering?'grab':'default';
+  };
+  document.onmouseup=()=>{dtDragging=false;};
 }
 
 function dtAddToCart(){
@@ -1044,6 +1124,7 @@ renderDekaler();
         <canvas id="dt-canvas" width="320" height="380"></canvas>
       </div>
       <div class="dt-garment-btns" id="dt-garment-btns"></div>
+      <div id="dt-drag-hint" style="display:none;font-size:.72rem;color:var(--mid);margin-top:.6rem;text-align:center">☞ Dra loggan för att flytta den</div>
     </div>
     <div class="dt-controls">
       <h3>Designa ditt plagg</h3>
