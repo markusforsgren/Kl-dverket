@@ -260,119 +260,72 @@ footer a:hover{color:var(--accent)}
   .hero-imgs{display:none}
 }
 
-/* ── SCROLL PROGRESS ── */
-.scroll-bar{position:fixed;top:0;left:0;height:3px;background:var(--accent);z-index:1000;width:0%;transition:width .08s linear;border-radius:0 2px 2px 0}
-
-/* ── ANIMATIONS ── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
 @keyframes shimmer{0%{left:-100%}100%{left:200%}}
-@keyframes countUp{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
-@keyframes slideInRight{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
-@keyframes popIn{0%{transform:scale(.85);opacity:0}70%{transform:scale(1.04)}100%{transform:scale(1);opacity:1}}
-
-.reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-delay-1{transition-delay:.08s}
-.reveal-delay-2{transition-delay:.16s}
-.reveal-delay-3{transition-delay:.24s}
-.reveal-delay-4{transition-delay:.32s}
-
-/* Hero text animation */
+@keyframes popIn{0%{transform:scale(.85);opacity:0}70%{transform:scale(1.06)}100%{transform:scale(1);opacity:1}}
+.scroll-bar{position:fixed;top:0;left:0;height:3px;background:var(--accent);z-index:9999;width:0%;transition:width .08s}
 .hero h1{animation:fadeUp .7s ease both}
 .hero-lead{animation:fadeUp .7s .15s ease both;opacity:0;animation-fill-mode:both}
 .hero-actions{animation:fadeUp .7s .25s ease both;opacity:0;animation-fill-mode:both}
 .hero-chips{animation:fadeUp .7s .35s ease both;opacity:0;animation-fill-mode:both}
-.hero-imgs{animation:fadeIn .9s .1s ease both;opacity:0;animation-fill-mode:both}
-
-/* Hero image cards */
-.hero-img-card::after{content:'';position:absolute;inset:0;background:rgba(212,82,26,.0);transition:background .3s;z-index:1}
-.hero-img-card:hover::after{background:rgba(212,82,26,.12)}
-.hero-img-info{z-index:2;transition:transform .3s}
-.hero-img-card:hover .hero-img-info{transform:translateY(-4px)}
-
-/* CTA shimmer */
+.hero-imgs{animation:fadeUp .9s .1s ease both;opacity:0;animation-fill-mode:both}
 .btn-accent{position:relative;overflow:hidden}
-.btn-accent::after{content:'';position:absolute;top:0;left:-100%;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);animation:shimmer 3s 1s infinite}
-
-/* Product cards enhanced */
+.btn-accent::after{content:'';position:absolute;top:0;left:-100%;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);animation:shimmer 3s 1s infinite}
 .product-card{transition:all .3s cubic-bezier(.2,.8,.2,1)}
 .product-card:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 16px 48px rgba(0,0,0,.15)}
-.product-img img{transition:transform .4s ease}
 .product-card:hover .product-img img{transform:scale(1.08)}
-
-/* Step numbers pulse on hover */
+.step:hover .step-num{transform:scale(1.12);box-shadow:0 4px 16px rgba(212,82,26,.3)}
 .step-num{transition:transform .25s,box-shadow .25s}
-.step:hover .step-num{transform:scale(1.12);box-shadow:0 4px 16px rgba(212,82,26,.35)}
-
-/* USP strip items */
-.usp-item{transition:transform .2s}
-.usp-item:hover{transform:translateY(-2px)}
-
-/* Dekal cards */
-.dekal-card{transition:all .3s}
-.dekal-card:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(0,0,0,.1)}
-.dekal-icon{display:inline-block;transition:transform .3s}
-.dekal-card:hover .dekal-icon{transform:scale(1.2) rotate(-8deg)}
-
-/* FAQ items */
-.faq-item{transition:all .25s;cursor:pointer}
+.dekal-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.1)}
 .faq-item:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:var(--shadow)}
-
-/* Cart count bounce */
-.cart-count{transition:transform .2s}
+.hero-img-card:hover .hero-img-info{transform:translateY(-4px)}
+.hero-img-info{transition:transform .3s}
 .cart-count.bump{animation:popIn .35s ease both}
-
-/* Design tool button in nav */
-.design-tool-btn{background:var(--accent);color:#fff;border:none;padding:.55rem 1.25rem;border-radius:8px;font-family:var(--fb);font-weight:700;font-size:.88rem;cursor:pointer;display:flex;align-items:center;gap:.4rem;transition:all .2s;position:relative;overflow:hidden}
-.design-tool-btn:hover{background:#B83E0E;transform:translateY(-1px)}
-.design-tool-btn::after{content:'';position:absolute;top:0;left:-100%;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);animation:shimmer 2.5s 0.5s infinite}
-
 /* ── DESIGN TOOL MODAL ── */
-.dt-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:700;align-items:center;justify-content:center;padding:1.5rem;backdrop-filter:blur(4px)}
-.dt-overlay.open{display:flex;animation:fadeIn .25s ease}
-.dt-modal{background:var(--white);border-radius:20px;max-width:960px;width:100%;max-height:92vh;overflow:hidden;display:grid;grid-template-columns:1.15fr 1fr;box-shadow:0 24px 80px rgba(0,0,0,.25);animation:fadeUp .3s ease}
-.dt-canvas-area{background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;position:relative}
-.dt-close{position:absolute;top:1rem;right:1rem;background:var(--white);border:1px solid var(--border);border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;z-index:10;transition:background .2s}
-.dt-close:hover{background:var(--accent-light)}
-.dt-canvas-wrap{position:relative;width:320px;height:380px}
-#dt-garment-svg{width:100%;height:100%}
-#dt-canvas{position:absolute;top:0;left:0;width:100%;height:100%;cursor:default;touch-action:none}
-.dt-garment-btns{display:flex;gap:.5rem;margin-top:1.25rem;flex-wrap:wrap;justify-content:center}
-.dt-garment-btn{padding:.4rem 1rem;border:1.5px solid var(--border);border-radius:20px;background:var(--white);font-size:.8rem;font-weight:600;cursor:pointer;transition:all .15s}
-.dt-garment-btn.active{background:var(--ink);color:#fff;border-color:var(--ink)}
-.dt-controls{padding:1.75rem;overflow-y:auto;max-height:92vh}
-.dt-controls h3{font-family:var(--fh);font-weight:900;font-size:1.5rem;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.3rem}
-.dt-controls p{font-size:.8rem;color:var(--mid);margin-bottom:1.5rem}
-.dt-group{margin-bottom:1.15rem}
-.dt-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--mid);margin-bottom:.45rem;display:block}
+.dt-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:800;backdrop-filter:blur(3px)}
+.dt-bg.open{display:flex;align-items:center;justify-content:center;padding:1rem;animation:fadeUp .25s ease}
+.dt-box{background:#fff;border-radius:16px;max-width:900px;width:100%;max-height:90vh;overflow:hidden;display:grid;grid-template-columns:1.1fr 1fr;box-shadow:0 24px 80px rgba(0,0,0,.25)}
+.dt-left{background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;position:relative}
+.dt-x{position:absolute;top:1rem;right:1rem;background:#fff;border:1px solid var(--border);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;z-index:5}
+.dt-x:hover{background:var(--accent-light)}
+.dt-wrap{position:relative;width:300px;height:360px}
+#dtSvg{width:100%;height:100%}
+#dtCv{position:absolute;top:0;left:0;width:100%;height:100%;cursor:default;touch-action:none}
+.dt-garments{display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap;justify-content:center}
+.dt-gb{padding:.35rem .9rem;border:1.5px solid var(--border);border-radius:20px;background:#fff;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .15s}
+.dt-gb.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.dt-hint{font-size:.72rem;color:var(--mid);margin-top:.6rem;display:none;text-align:center}
+.dt-right{padding:1.75rem;overflow-y:auto;max-height:90vh}
+.dt-right h3{font-family:var(--fh);font-weight:900;font-size:1.5rem;text-transform:uppercase;margin-bottom:.25rem}
+.dt-right p{font-size:.8rem;color:var(--mid);margin-bottom:1.25rem}
+.dt-grp{margin-bottom:1.1rem}
+.dt-lbl{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--mid);margin-bottom:.45rem;display:block}
 .dt-colors{display:flex;gap:.5rem;flex-wrap:wrap}
-.dt-swatch{width:30px;height:30px;border-radius:50%;cursor:pointer;border:2px solid var(--border);transition:all .2s;flex-shrink:0}
-.dt-swatch.active{border-color:var(--accent);transform:scale(1.18);box-shadow:0 2px 8px rgba(212,82,26,.3)}
-.dt-upload{border:2px dashed var(--border);border-radius:10px;padding:1.25rem;text-align:center;cursor:pointer;transition:all .2s;background:var(--bg);position:relative}
-.dt-upload:hover{border-color:var(--accent);background:var(--accent-light)}
-.dt-upload input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}
-.dt-upload-title{font-weight:700;font-size:.88rem;color:var(--ink);margin-bottom:.2rem}
-.dt-upload-sub{font-size:.74rem;color:var(--mid)}
-.dt-text-inp{width:100%;padding:.6rem .85rem;border:1.5px solid var(--border);border-radius:8px;font-size:.9rem;outline:none;transition:border-color .2s;font-family:var(--fb)}
-.dt-text-inp:focus{border-color:var(--accent)}
-.dt-slider{width:100%;margin-top:.25rem}
-.dt-sizes{display:flex;gap:.4rem;flex-wrap:wrap}
-.dt-size-chip{padding:.32rem .7rem;border:1.5px solid var(--border);border-radius:6px;font-size:.8rem;font-weight:600;cursor:pointer;background:var(--white);transition:all .15s}
-.dt-size-chip.active{background:var(--ink);color:#fff;border-color:var(--ink)}
-.dt-qty-row{display:flex;align-items:center;gap:.75rem}
-.dt-qty-btn{width:34px;height:34px;border:1.5px solid var(--border);border-radius:6px;background:var(--white);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:700;transition:all .2s}
-.dt-qty-btn:hover{border-color:var(--accent);color:var(--accent)}
-.dt-price{font-family:var(--fh);font-size:1.8rem;font-weight:900;color:var(--accent);margin:1rem 0 .5rem;line-height:1}
-.dt-add-btn{display:block;width:100%;padding:.9rem;background:var(--accent);color:#fff;border:none;border-radius:8px;font-family:var(--fb);font-weight:800;font-size:1rem;cursor:pointer;transition:background .2s}
-.dt-add-btn:hover{background:#B83E0E}
-.dt-note{font-size:.72rem;color:var(--mid);text-align:center;margin-top:.5rem}
+.dt-sw{width:28px;height:28px;border-radius:50%;cursor:pointer;border:2px solid var(--border);transition:all .2s;flex-shrink:0}
+.dt-sw.on{border-color:var(--accent);transform:scale(1.18)}
+.dt-up{border:2px dashed var(--border);border-radius:8px;padding:1.1rem;text-align:center;cursor:pointer;position:relative;background:var(--bg);transition:all .2s}
+.dt-up:hover{border-color:var(--accent);background:var(--accent-light)}
+.dt-up input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}
+.dt-up b{font-size:.85rem}
+.dt-up small{display:block;font-size:.72rem;color:var(--mid);margin-top:.15rem}
+.dt-inp{width:100%;padding:.6rem .85rem;border:1.5px solid var(--border);border-radius:8px;font-size:.9rem;outline:none;transition:border-color .2s;font-family:var(--fb)}
+.dt-inp:focus{border-color:var(--accent)}
+.dt-szs{display:flex;gap:.4rem;flex-wrap:wrap}
+.dt-sc{padding:.32rem .7rem;border:1.5px solid var(--border);border-radius:6px;font-size:.8rem;font-weight:600;cursor:pointer;background:#fff;transition:all .15s}
+.dt-sc.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.dt-qrow{display:flex;align-items:center;gap:.75rem}
+.dt-qb{width:32px;height:32px;border:1.5px solid var(--border);border-radius:6px;background:#fff;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:700}
+.dt-qb:hover{border-color:var(--accent);color:var(--accent)}
+.dt-price{font-family:var(--fh);font-size:1.8rem;font-weight:900;color:var(--accent);margin:.85rem 0 .5rem;line-height:1}
+.dt-add{display:block;width:100%;padding:.9rem;background:var(--accent);color:#fff;border:none;border-radius:8px;font-weight:800;font-size:1rem;cursor:pointer;transition:background .2s}
+.dt-add:hover{background:#B83E0E}
+.dt-foot{font-size:.72rem;color:var(--mid);text-align:center;margin-top:.5rem}
+@media(max-width:700px){.dt-box{grid-template-columns:1fr}.dt-left{display:none}}
 </style>
 </head>
 <body>
 
-<div class="scroll-bar" id="scroll-bar"></div>
+<div class="scroll-bar" id="scrollBar"></div>
 <div class="topbar">Klädtryck från 1 plagg · Korrektur ingår alltid · Leverans 5–8 dagar</div>
 
 <nav>
@@ -385,7 +338,7 @@ footer a:hover{color:var(--accent)}
       <li><a href="#faq">FAQ</a></li>
     </ul>
     <div class="nav-right">
-      <button class="design-tool-btn" onclick="openDT(1)">✎ Designa själv</button>
+<button onclick="openDesignTool()" style="background:var(--accent);color:#fff;border:none;padding:.55rem 1.25rem;border-radius:8px;font-family:var(--fb);font-weight:700;font-size:.88rem;cursor:pointer;margin-right:.5rem;transition:background .2s" onmouseover="this.style.background='#B83E0E'" onmouseout="this.style.background='var(--accent)'">✎ Designa själv</button>
       <button class="cart-btn" onclick="toggleCart()">
         🛒 Varukorg
         <span class="cart-count" id="nav-cart-count">0</span>
@@ -917,262 +870,186 @@ renderHero();
 renderProducts();
 renderDekaler();
 
-/* ════ SCROLL PROGRESS ════ */
+/* ── SCROLL BAR ── */
 window.addEventListener('scroll',()=>{
-  const pct=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
-  document.getElementById('scroll-bar').style.width=pct+'%';
+  const p=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
+  const el=document.getElementById('scrollBar');
+  if(el) el.style.width=p+'%';
 },{passive:true});
 
-/* ════ SCROLL REVEAL ════ */
-const revealObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');e.target.style.transitionDelay=e.target.dataset.delay||'0s';}});
-},{threshold:0.1});
-function setupReveal(){
-  document.querySelectorAll('.step,.faq-item,.dekal-card,.product-card,.usp-item').forEach((el,i)=>{
-    el.classList.add('reveal');
-    el.dataset.delay=(i*0.07)+'s';
-    revealObs.observe(el);
+/* ── SCROLL REVEAL ── */
+setTimeout(()=>{
+  const obs=new IntersectionObserver(entries=>entries.forEach(e=>{
+    if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}
+  }),{threshold:0.1});
+  document.querySelectorAll('.step,.faq-item,.dekal-card,.product-card').forEach((el,i)=>{
+    el.style.cssText+='opacity:0;transform:translateY(20px);transition:opacity .55s '+(i*0.06)+'s ease,transform .55s '+(i*0.06)+'s ease';
+    obs.observe(el);
   });
-}
-setTimeout(setupReveal,200);
+},300);
 
-/* ════ CART COUNT BOUNCE ════ */
-function bumpCart(){
-  const el=document.getElementById('nav-cart-count');
-  el.classList.remove('bump');
-  void el.offsetWidth;
-  el.classList.add('bump');
-  setTimeout(()=>el.classList.remove('bump'),400);
-}
-
-/* ════ DESIGN TOOL ════ */
-const DT_G=[
+/* ── DESIGN TOOL ── */
+const DT_GARMENTS=[
   {id:1,name:'T-shirt',svg:'tshirt',price:229,colors:['#FFFFFF','#1A1814','#3A3630','#D4521A','#1E7A48','#1E3A6E']},
-  {id:4,name:'Hoodie',svg:'hoodie',price:499,colors:['#FFFFFF','#1A1814','#3A3630','#D4521A','#1E7A48']},
-  {id:9,name:'Polo',svg:'polo',price:349,colors:['#FFFFFF','#1A1814','#3A3630','#1E7A48']},
-  {id:12,name:'Keps',svg:'cap',price:299,colors:['#1A1814','#3A3630','#D4521A','#1E7A48']},
+  {id:4,name:'Hoodie', svg:'hoodie',price:499,colors:['#FFFFFF','#1A1814','#3A3630','#D4521A','#1E7A48']},
+  {id:9,name:'Polo',   svg:'polo',  price:349,colors:['#FFFFFF','#1A1814','#3A3630','#1E7A48']},
+  {id:12,name:'Keps',  svg:'cap',   price:299,colors:['#1A1814','#3A3630','#D4521A']},
 ];
-const DT_SVG={
+const DT_PATHS={
   tshirt:c=>`<path d="M38,22 L14,34 L21,55 L38,49 L38,100 L82,100 L82,49 L99,55 L106,34 L82,22 Q71,16 60,17 Q49,16 38,22Z" fill="${c}" stroke="#B0ACA4" stroke-width="1.5"/>`,
-  hoodie:c=>`<path d="M60,12 Q50,12 46,19 L32,22 L10,36 L18,58 L32,52 L32,104 L88,104 L88,52 L102,58 L110,36 L88,22 L74,19 Q70,12 60,12Z" fill="${c}" stroke="#A4A09C" stroke-width="1.5"/><path d="M46,19 Q50,27 60,28 Q70,27 74,19" fill="none" stroke="#989490" stroke-width="2"/>`,
-  polo:c=>`<path d="M38,22 L16,36 L24,55 L38,49 L38,100 L82,100 L82,49 L96,55 L104,36 L82,22 L72,19 L66,28 L60,30 L54,28 L48,19Z" fill="${c}" stroke="#A0B0A4" stroke-width="1.5"/><path d="M54,19 L54,36 L60,39 L66,36 L66,19" fill="${c}" stroke="#90AC9C" stroke-width="1"/>`,
-  cap:c=>`<path d="M22,72 Q22,42 60,35 Q98,42 98,72Z" fill="${c}"/><rect x="18" y="70" width="84" height="13" rx="3" fill="${c==='#FFFFFF'?'#E8E4DC':c}"/><path d="M16,76 L60,84 L60,90 Q34,87 16,76Z" fill="#F0EDE6"/>`,
+  hoodie:c=>`<path d="M60,12 Q50,12 46,19 L32,22 L10,36 L18,58 L32,52 L32,104 L88,104 L88,52 L102,58 L110,36 L88,22 L74,19 Q70,12 60,12Z" fill="${c}" stroke="#A4A09C" stroke-width="1.5"/><path d="M46,19 Q50,27 60,28 Q70,27 74,19" fill="none" stroke="#988" stroke-width="2"/>`,
+  polo:  c=>`<path d="M38,22 L16,36 L24,55 L38,49 L38,100 L82,100 L82,49 L96,55 L104,36 L82,22 L72,19 L66,28 L60,30 L54,28 L48,19Z" fill="${c}" stroke="#A0B0A4" stroke-width="1.5"/><path d="M54,19 L54,36 L60,39 L66,36 L66,19" fill="${c}" stroke="#90AC9C" stroke-width="1"/>`,
+  cap:   c=>`<path d="M22,72 Q22,42 60,35 Q98,42 98,72Z" fill="${c}"/><rect x="18" y="70" width="84" height="13" rx="3" fill="${c==='#FFFFFF'?'#E8E4DC':c}"/><path d="M16,76 L60,84 L60,90 Q34,87 16,76Z" fill="#F0EDE6"/>`,
 };
-const DT_SIZES=['XS','S','M','L','XL','XXL'];
-let dtG=DT_G[0],dtColor='#FFFFFF',dtLogoImg=null,dtLogoSz=80,dtQtyVal=1,dtSizeVal='M';
+let dtG=DT_GARMENTS[0], dtC='#FFFFFF', dtLogo=null, dtSz=80, dtQv=1, dtSv='M';
+let dtX=150, dtY=150, dtDrag=false, dtOx=0, dtOy=0, dtHov=false;
 
-function openDT(pid){
-  const g=DT_G.find(x=>x.id===pid)||DT_G[0];
-  dtG=g;dtColor=g.colors[0];dtLogoImg=null;dtQtyVal=1;dtSizeVal='M';
-  document.getElementById('dt-text').value='';
-  document.getElementById('dt-logo-name').textContent='';
-  document.getElementById('dt-size-ctrl').style.display='none';
-  document.getElementById('dt-file').value='';
-  document.getElementById('dt-drag-hint').style.display='none';
-  const cv2=document.getElementById('dt-canvas');
-  dtLogoX=cv2.width/2; dtLogoY=cv2.height*0.42;
-  renderDtGarments();renderDtColors();renderDtSizes();
-  document.getElementById('dt-qty-display').textContent=1;
-  dtDraw();
-  dtSetupDrag();
-  document.getElementById('dt-overlay').classList.add('open');
+function openDesignTool(){
+  dtG=DT_GARMENTS[0]; dtC=dtG.colors[0]; dtLogo=null; dtQv=1; dtSv='M';
+  dtX=150; dtY=150;
+  document.getElementById('dtText').value='';
+  document.getElementById('dtLogoName').textContent='';
+  document.getElementById('dtSzCtrl').style.display='none';
+  document.getElementById('dtHint').style.display='none';
+  document.getElementById('dtFile').value='';
+  document.getElementById('dtQty').textContent=1;
+  dtBuildGarments(); dtBuildColors(); dtBuildSizes(); dtDraw();
+  dtBindDrag();
+  document.getElementById('dtBg').classList.add('open');
   document.body.style.overflow='hidden';
 }
-function closeDT(){document.getElementById('dt-overlay').classList.remove('open');document.body.style.overflow='';}
-document.getElementById('dt-overlay').addEventListener('click',e=>{if(e.target===document.getElementById('dt-overlay'))closeDT();});
-
-function renderDtGarments(){
-  document.getElementById('dt-garment-btns').innerHTML=DT_G.map(g=>
-    `<button class="dt-garment-btn${g.id===dtG.id?' active':''}" onclick="dtSelectG(${g.id})">${g.name}</button>`).join('');
+function closeDT(){
+  document.getElementById('dtBg').classList.remove('open');
+  document.body.style.overflow='';
 }
-function dtSelectG(id){dtG=DT_G.find(x=>x.id===id);dtColor=dtG.colors[0];renderDtGarments();renderDtColors();dtDraw();}
+document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('dtBg').addEventListener('click',function(e){if(e.target===this)closeDT();});
+});
 
-function renderDtColors(){
-  document.getElementById('dt-colors').innerHTML=dtG.colors.map(c=>
-    `<span class="dt-swatch${c===dtColor?' active':''}" style="background:${c};${c==='#FFFFFF'?'border-color:#ddd':''}" onclick="dtSetColor('${c}')"></span>`).join('');
+function dtBuildGarments(){
+  document.getElementById('dtGarments').innerHTML=DT_GARMENTS.map(g=>
+    `<button class="dt-gb${g.id===dtG.id?' on':''}" onclick="dtPickG(${g.id})">${g.name}</button>`).join('');
 }
-function dtSetColor(c){dtColor=c;renderDtColors();dtDraw();}
+function dtPickG(id){dtG=DT_GARMENTS.find(x=>x.id===id);dtC=dtG.colors[0];dtBuildGarments();dtBuildColors();dtDraw();}
 
-function renderDtSizes(){
-  document.getElementById('dt-sizes').innerHTML=DT_SIZES.map(s=>
-    `<span class="dt-size-chip${s===dtSizeVal?' active':''}" onclick="dtSetSize(this,'${s}')">${s}</span>`).join('');
+function dtBuildColors(){
+  document.getElementById('dtColors').innerHTML=dtG.colors.map(c=>
+    `<span class="dt-sw${c===dtC?' on':''}" style="background:${c};${c==='#FFFFFF'?'border-color:#ccc':''}" onclick="dtPickC('${c}')"></span>`).join('');
 }
-function dtSetSize(el,s){document.querySelectorAll('.dt-size-chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');dtSizeVal=s;}
+function dtPickC(c){dtC=c;dtBuildColors();dtDraw();}
 
-function dtQty(d){dtQtyVal=Math.max(1,dtQtyVal+d);document.getElementById('dt-qty-display').textContent=dtQtyVal;dtUpdatePrice();}
-function dtUpdatePrice(){document.getElementById('dt-price-display').textContent=(dtG.price*dtQtyVal).toLocaleString('sv-SE')+' kr';}
+function dtBuildSizes(){
+  const sizes=['XS','S','M','L','XL','XXL'];
+  document.getElementById('dtSizes').innerHTML=sizes.map(s=>
+    `<span class="dt-sc${s===dtSv?' on':''}" onclick="dtPickS(this,'${s}')">${s}</span>`).join('');
+}
+function dtPickS(el,s){document.querySelectorAll('.dt-sc').forEach(x=>x.classList.remove('on'));el.classList.add('on');dtSv=s;}
 
-function dtLogo(e){
-  const f=e.target.files[0];if(!f)return;
-  document.getElementById('dt-logo-name').textContent='📎 '+f.name;
+function dtQ(d){dtQv=Math.max(1,dtQv+d);document.getElementById('dtQty').textContent=dtQv;dtUpdPrice();}
+function dtUpdPrice(){document.getElementById('dtPriceEl').textContent=(dtG.price*dtQv).toLocaleString('sv-SE')+' kr';}
+
+function dtLoadLogo(e){
+  const f=e.target.files[0]; if(!f) return;
+  document.getElementById('dtLogoName').textContent='📎 '+f.name;
   const r=new FileReader();
-  r.onload=ev=>{
-    const img=new Image();
-    img.onload=()=>{
-      dtLogoImg=img;
-      // Reset position to center of garment
-      const cv=document.getElementById('dt-canvas');
-      dtLogoX=cv.width/2;
-      dtLogoY=cv.height*0.42;
-      document.getElementById('dt-size-ctrl').style.display='block';
-      document.getElementById('dt-drag-hint').style.display='block';
-      dtDraw();
-    };
-    img.src=ev.target.result;
-  };
+  r.onload=ev=>{const img=new Image(); img.onload=()=>{dtLogo=img;dtX=150;dtY=150;document.getElementById('dtSzCtrl').style.display='block';document.getElementById('dtHint').style.display='block';dtDraw();};img.src=ev.target.result;};
   r.readAsDataURL(f);
 }
 
-// Logo position state
-let dtLogoX=160, dtLogoY=160;
-let dtDragging=false, dtDragOffX=0, dtDragOffY=0;
-
 function dtDraw(){
-  document.getElementById('dt-svg').innerHTML=DT_SVG[dtG.svg]?DT_SVG[dtG.svg](dtColor):'';
-  const cv=document.getElementById('dt-canvas'),ctx=cv.getContext('2d');
+  document.getElementById('dtSvg').innerHTML=DT_PATHS[dtG.svg]?DT_PATHS[dtG.svg](dtC):'';
+  const cv=document.getElementById('dtCv'), ctx=cv.getContext('2d');
   ctx.clearRect(0,0,cv.width,cv.height);
-  if(dtLogoImg){
-    dtLogoSz=parseInt(document.getElementById('dt-logo-size').value);
-    const w=dtLogoSz, h=dtLogoSz*(dtLogoImg.height/dtLogoImg.width);
-    ctx.drawImage(dtLogoImg,dtLogoX-w/2,dtLogoY-h/2,w,h);
-    // Draw subtle drag handle border when hovering
-    if(dtHovering){
-      ctx.strokeStyle='rgba(212,82,26,.5)';
-      ctx.lineWidth=1.5;
-      ctx.setLineDash([4,3]);
-      ctx.strokeRect(dtLogoX-w/2-2,dtLogoY-h/2-2,w+4,h+4);
-      ctx.setLineDash([]);
-    }
+  if(dtLogo){
+    dtSz=parseInt(document.getElementById('dtSzRange').value);
+    const w=dtSz, h=dtSz*(dtLogo.height/dtLogo.width);
+    ctx.drawImage(dtLogo,dtX-w/2,dtY-h/2,w,h);
+    if(dtHov){ctx.strokeStyle='rgba(212,82,26,.5)';ctx.lineWidth=1.5;ctx.setLineDash([4,3]);ctx.strokeRect(dtX-w/2-2,dtY-h/2-2,w+4,h+4);ctx.setLineDash([]);}
   }
-  const txt=document.getElementById('dt-text').value;
+  const txt=document.getElementById('dtText').value;
   if(txt){
-    ctx.font='bold 15px Plus Jakarta Sans,sans-serif';
-    ctx.fillStyle=dtColor==='#FFFFFF'?'#1A1814':'#FFFFFF';
+    ctx.font='bold 14px Plus Jakarta Sans,sans-serif';
+    ctx.fillStyle=dtC==='#FFFFFF'?'#1A1814':'#FFFFFF';
     ctx.textAlign='center';
-    ctx.fillText(txt,cv.width/2,dtLogoImg?dtLogoY+dtLogoSz*0.55+20:cv.height*0.5);
+    ctx.fillText(txt,cv.width/2,dtLogo?dtY+dtSz*0.55+20:cv.height*0.5);
   }
-  dtUpdatePrice();
+  dtUpdPrice();
 }
 
-// Hit test — is point inside logo?
-let dtHovering=false;
-function dtHitLogo(x,y){
-  if(!dtLogoImg) return false;
-  const w=dtLogoSz, h=dtLogoSz*(dtLogoImg.height/dtLogoImg.width);
-  return x>=dtLogoX-w/2-6 && x<=dtLogoX+w/2+6 && y>=dtLogoY-h/2-6 && y<=dtLogoY+h/2+6;
+function dtHit(x,y){
+  if(!dtLogo) return false;
+  const w=dtSz, h=dtSz*(dtLogo.height/dtLogo.width);
+  return x>=dtX-w/2-8&&x<=dtX+w/2+8&&y>=dtY-h/2-8&&y<=dtY+h/2+8;
 }
-
-function dtCanvasXY(e){
-  const cv=document.getElementById('dt-canvas');
-  const rect=cv.getBoundingClientRect();
-  const scaleX=cv.width/rect.width, scaleY=cv.height/rect.height;
-  const clientX=e.touches?e.touches[0].clientX:e.clientX;
-  const clientY=e.touches?e.touches[0].clientY:e.clientY;
-  return{x:(clientX-rect.left)*scaleX, y:(clientY-rect.top)*scaleY};
+function dtPos(e){
+  const cv=document.getElementById('dtCv'), r=cv.getBoundingClientRect();
+  const sx=cv.width/r.width, sy=cv.height/r.height;
+  const cx=e.touches?e.touches[0].clientX:e.clientX;
+  const cy=e.touches?e.touches[0].clientY:e.clientY;
+  return{x:(cx-r.left)*sx, y:(cy-r.top)*sy};
 }
-
-// Setup drag events after DT opens
-function dtSetupDrag(){
-  const cv=document.getElementById('dt-canvas');
-  cv.style.cursor='default';
-
-  cv.onmousedown=cv.ontouchstart=function(e){
-    const {x,y}=dtCanvasXY(e);
-    if(dtHitLogo(x,y)){
-      dtDragging=true;
-      dtDragOffX=x-dtLogoX;
-      dtDragOffY=y-dtLogoY;
-      cv.style.cursor='grabbing';
-      e.preventDefault();
-    }
+function dtBindDrag(){
+  const cv=document.getElementById('dtCv');
+  cv.onmousedown=cv.ontouchstart=e=>{
+    const p=dtPos(e);
+    if(dtHit(p.x,p.y)){dtDrag=true;dtOx=p.x-dtX;dtOy=p.y-dtY;cv.style.cursor='grabbing';e.preventDefault();}
   };
-  cv.onmousemove=cv.ontouchmove=function(e){
-    const {x,y}=dtCanvasXY(e);
-    if(dtDragging){
-      dtLogoX=Math.max(10,Math.min(cv.width-10,x-dtDragOffX));
-      dtLogoY=Math.max(10,Math.min(cv.height-10,y-dtDragOffY));
-      dtDraw();
-      e.preventDefault();
+  cv.onmousemove=cv.ontouchmove=e=>{
+    const p=dtPos(e);
+    if(dtDrag){
+      dtX=Math.max(10,Math.min(cv.width-10,p.x-dtOx));
+      dtY=Math.max(10,Math.min(cv.height-10,p.y-dtOy));
+      dtDraw(); e.preventDefault();
     } else {
-      const hit=dtHitLogo(x,y);
-      cv.style.cursor=hit?'grab':'default';
-      if(hit!==dtHovering){dtHovering=hit;dtDraw();}
+      const h=dtHit(p.x,p.y); cv.style.cursor=h?'grab':'default';
+      if(h!==dtHov){dtHov=h;dtDraw();}
     }
   };
-  cv.onmouseup=cv.ontouchend=function(){
-    dtDragging=false;
-    document.getElementById('dt-canvas').style.cursor=dtHovering?'grab':'default';
-  };
-  document.onmouseup=()=>{dtDragging=false;};
+  cv.onmouseup=cv.ontouchend=()=>{dtDrag=false;document.getElementById('dtCv').style.cursor=dtHov?'grab':'default';};
+  window.addEventListener('mouseup',()=>{dtDrag=false;});
 }
 
-function dtAddToCart(){
+function dtAdd(){
   const p=PRODUCTS.find(x=>x.id===dtG.id)||PRODUCTS[0];
-  cart.push({cartId:++cartId,pid:dtG.id,name:dtG.name+' (designad)',svg:p.svg,c:dtColor,size:dtSizeVal,qty:dtQtyVal,unit:dtG.price,total:dtG.price*dtQtyVal,logo:document.getElementById('dt-logo-name').textContent,notes:document.getElementById('dt-text').value,custom:true});
-  closeDT();renderCart();bumpCart();toggleCart();
+  cart.push({cartId:++cartId,name:dtG.name+' (designad)',svg:p.svg,c:dtC,size:dtSv,qty:dtQv,unit:dtG.price,total:dtG.price*dtQv,logo:document.getElementById('dtLogoName').textContent,notes:document.getElementById('dtText').value});
+  closeDT(); renderCart(); toggleCart();
 }
 
 renderDekaler();
 </script>
 
-<!-- ── DESIGN TOOL MODAL ── -->
-<div class="dt-overlay" id="dt-overlay">
-  <div class="dt-modal">
-    <div class="dt-canvas-area">
-      <button class="dt-close" onclick="closeDT()">✕</button>
-      <div class="dt-canvas-wrap">
-        <svg id="dt-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"></svg>
-        <canvas id="dt-canvas" width="320" height="380"></canvas>
+<div class="dt-bg" id="dtBg">
+  <div class="dt-box">
+    <div class="dt-left">
+      <button class="dt-x" onclick="closeDT()">✕</button>
+      <div class="dt-wrap">
+        <svg id="dtSvg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"></svg>
+        <canvas id="dtCv" width="300" height="360"></canvas>
       </div>
-      <div class="dt-garment-btns" id="dt-garment-btns"></div>
-      <div id="dt-drag-hint" style="display:none;font-size:.72rem;color:var(--mid);margin-top:.6rem;text-align:center">☞ Dra loggan för att flytta den</div>
+      <div class="dt-garments" id="dtGarments"></div>
+      <div class="dt-hint" id="dtHint">☞ Dra loggan för att flytta den</div>
     </div>
-    <div class="dt-controls">
+    <div class="dt-right">
       <h3>Designa ditt plagg</h3>
-      <p>Välj plagg, ladda upp din logga och lägg till text — du ser resultatet direkt.</p>
-
-      <div class="dt-group">
-        <span class="dt-label">Plaggfärg</span>
-        <div class="dt-colors" id="dt-colors"></div>
+      <p>Ladda upp din logga, välj färg och lägg till text — se resultatet direkt.</p>
+      <div class="dt-grp"><span class="dt-lbl">Plaggfärg</span><div class="dt-colors" id="dtColors"></div></div>
+      <div class="dt-grp">
+        <span class="dt-lbl">Din logga</span>
+        <div class="dt-up"><input type="file" id="dtFile" accept="image/*" onchange="dtLoadLogo(event)"><b>⬆ Klicka eller dra hit</b><small>PNG · JPG · SVG — gärna transparent bakgrund</small></div>
+        <div id="dtLogoName" style="font-size:.75rem;color:var(--green);margin-top:.3rem"></div>
       </div>
-
-      <div class="dt-group">
-        <span class="dt-label">Din logga</span>
-        <div class="dt-upload">
-          <input type="file" id="dt-file" accept="image/*" onchange="dtLogo(event)">
-          <div class="dt-upload-title">⬆ Klicka eller dra hit din logga</div>
-          <div class="dt-upload-sub">PNG · SVG · JPG — gärna transparent bakgrund</div>
-        </div>
-        <div id="dt-logo-name" style="font-size:.75rem;color:var(--green);margin-top:.35rem"></div>
+      <div class="dt-grp" id="dtSzCtrl" style="display:none">
+        <span class="dt-lbl">Loggans storlek</span>
+        <input type="range" style="width:100%" id="dtSzRange" min="20" max="180" value="80" oninput="dtDraw()">
       </div>
-
-      <div class="dt-group" id="dt-size-ctrl" style="display:none">
-        <span class="dt-label">Loggans storlek</span>
-        <input type="range" class="dt-slider" id="dt-logo-size" min="20" max="200" value="80" oninput="dtDraw()">
+      <div class="dt-grp"><span class="dt-lbl">Text (valfritt)</span><input type="text" class="dt-inp" id="dtText" placeholder="Företagsnamn, slogan..." oninput="dtDraw()"></div>
+      <div class="dt-grp"><span class="dt-lbl">Storlek</span><div class="dt-szs" id="dtSizes"></div></div>
+      <div class="dt-grp"><span class="dt-lbl">Antal</span>
+        <div class="dt-qrow"><button class="dt-qb" onclick="dtQ(-1)">−</button><span id="dtQty" style="font-weight:700;min-width:20px;text-align:center">1</span><button class="dt-qb" onclick="dtQ(1)">+</button></div>
       </div>
-
-      <div class="dt-group">
-        <span class="dt-label">Text på plagget (valfritt)</span>
-        <input type="text" class="dt-text-inp" id="dt-text" placeholder="Ditt företagsnamn, slogan..." oninput="dtDraw()">
-      </div>
-
-      <div class="dt-group">
-        <span class="dt-label">Storlek</span>
-        <div class="dt-sizes" id="dt-sizes"></div>
-      </div>
-
-      <div class="dt-group">
-        <span class="dt-label">Antal</span>
-        <div class="dt-qty-row">
-          <button class="dt-qty-btn" onclick="dtQty(-1)">−</button>
-          <span id="dt-qty-display" style="font-weight:700;min-width:24px;text-align:center">1</span>
-          <button class="dt-qty-btn" onclick="dtQty(1)">+</button>
-        </div>
-      </div>
-
-      <div class="dt-price" id="dt-price-display">229 kr</div>
-      <button class="dt-add-btn" onclick="dtAddToCart()">Lägg i varukorg</button>
-      <p class="dt-note">Förhandsvisning — exakt korrektur skickas inom 24h innan tryck</p>
+      <div class="dt-price" id="dtPriceEl">229 kr</div>
+      <button class="dt-add" onclick="dtAdd()">Lägg i varukorg</button>
+      <p class="dt-foot">Förhandsvisning — exakt korrektur skickas innan tryck</p>
     </div>
   </div>
 </div>
