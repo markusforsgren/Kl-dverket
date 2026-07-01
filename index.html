@@ -1107,7 +1107,7 @@ function dtSetupDrag(){
 
 function dtAddToCart(){
   const p=PRODUCTS.find(x=>x.id===dtG.id)||PRODUCTS[0];
-  cart.push({cartId:++cartIdCounter,pid:dtG.id,name:dtG.name+' (designad)',svg:p.svg,c:dtColor,size:dtSizeVal,qty:dtQtyVal,unit:dtG.price,total:dtG.price*dtQtyVal,logo:document.getElementById('dt-logo-name').textContent,notes:document.getElementById('dt-text').value,custom:true});
+  cart.push({cartId:++cartId,pid:dtG.id,name:dtG.name+' (designad)',svg:p.svg,c:dtColor,size:dtSizeVal,qty:dtQtyVal,unit:dtG.price,total:dtG.price*dtQtyVal,logo:document.getElementById('dt-logo-name').textContent,notes:document.getElementById('dt-text').value,custom:true});
   closeDT();renderCart();bumpCart();toggleCart();
 }
 
