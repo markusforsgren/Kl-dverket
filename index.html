@@ -263,7 +263,7 @@ footer a:hover{color:var(--accent)}
 /* ── INSPIRATION GALLERY ── */
 #inspiration{background:var(--white)}
 .insp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem}
-.insp-card{border-radius:var(--r);overflow:hidden;position:relative;aspect-ratio:1/1;cursor:pointer;background:var(--bg)}
+.insp-card{border-radius:var(--r);overflow:hidden;position:relative;aspect-ratio:1/1;cursor:pointer;background:#1A1814}
 .insp-card img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .insp-card:hover img{transform:scale(1.06)}
 .insp-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 55%);opacity:0;transition:opacity .3s}
@@ -271,14 +271,17 @@ footer a:hover{color:var(--accent)}
 .insp-label{position:absolute;bottom:0;left:0;right:0;padding:1rem;color:#fff;font-family:var(--fh);font-weight:800;font-size:1rem;text-transform:uppercase;letter-spacing:.04em;transform:translateY(8px);transition:transform .3s;opacity:0}
 .insp-card:hover .insp-label{transform:translateY(0);opacity:1}
 /* Tryggman section */
-#tryggman-section{background:var(--bg)}
+#tryggman-section{background:#1A1814}
+.tryggman-text h2{color:#fff}
+.tryggman-text p{color:#9A9488}
+.tryggman-text .section-eyebrow{color:var(--accent2)}
 .tryggman-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:center}
 .tryggman-text h2{font-family:var(--fh);font-size:clamp(2rem,4vw,3rem);font-weight:900;line-height:1;margin-bottom:.75rem}
 .tryggman-text h2 em{color:var(--accent);font-style:normal}
 .tryggman-text p{font-size:.95rem;color:var(--mid);line-height:1.75;margin-bottom:1.5rem}
 .tryggman-imgs{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
-.tryggman-img{border-radius:var(--r);overflow:hidden;aspect-ratio:3/4}
-.tryggman-img img{width:100%;height:100%;object-fit:cover}
+.tryggman-img{border-radius:var(--r);overflow:hidden;aspect-ratio:3/4;background:#111}
+.tryggman-img img{width:100%;height:100%;object-fit:contain}
 @media(max-width:768px){.tryggman-grid{grid-template-columns:1fr}}
 </style>
 </head>
@@ -392,22 +395,22 @@ footer a:hover{color:var(--accent)}
     </div>
     <div class="insp-grid">
       <div class="insp-card">
-        <img src="images/insp_streetwear.png" alt="Streetwear tryck" loading="lazy">
+        <img src="images/tryggman_hoodie.png" alt="Ros tryck" loading="lazy" style="background:#fff">
         <div class="insp-overlay"></div>
         <div class="insp-label">Streetwear</div>
       </div>
       <div class="insp-card">
-        <img src="images/insp_goodvibes.png" alt="Good Vibes tryck" loading="lazy">
+        <img src="images/tryggman_ungdom.png" alt="Good Vibes tryck" loading="lazy" style="background:#fff">
         <div class="insp-overlay"></div>
         <div class="insp-label">Text & motiv</div>
       </div>
       <div class="insp-card">
-        <img src="images/tryggman_hoodie.png" alt="Tryggman hoodie" loading="lazy">
+        <img src="images/insp_streetwear.png" alt="Streetwear tryck" loading="lazy" style="background:#1A1814">
         <div class="insp-overlay"></div>
         <div class="insp-label">Logotyp på hoodie</div>
       </div>
       <div class="insp-card">
-        <img src="images/tryggman_ungdom.png" alt="Tryggman ungdom" loading="lazy">
+        <img src="images/insp_goodvibes.png" alt="Tryggman ungdom" loading="lazy" style="background:#1A1814">
         <div class="insp-overlay"></div>
         <div class="insp-label">Eget varumärke</div>
       </div>
@@ -426,8 +429,8 @@ footer a:hover{color:var(--accent)}
         <a class="btn-accent" href="https://tryggman.se" target="_blank" style="display:inline-block;text-decoration:none">Se Tryggman →</a>
       </div>
       <div class="tryggman-imgs">
-        <div class="tryggman-img"><img src="images/tryggman_hoodie.png" alt="Tryggman hoodie" loading="lazy"></div>
-        <div class="tryggman-img"><img src="images/tryggman_ungdom.png" alt="Tryggman ungdom" loading="lazy"></div>
+        <div class="tryggman-img"><img src="images/insp_goodvibes.png" alt="Tryggman hoodie" loading="lazy" style="object-fit:contain;background:#111"></div>
+        <div class="tryggman-img"><img src="images/insp_streetwear.png" alt="Tryggman streetwear" loading="lazy" style="object-fit:cover;background:#1A1814"></div>
       </div>
     </div>
   </div>
