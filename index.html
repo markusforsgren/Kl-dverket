@@ -260,72 +260,30 @@ footer a:hover{color:var(--accent)}
   .hero-imgs{display:none}
 }
 
-@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
-@keyframes shimmer{0%{left:-100%}100%{left:200%}}
-@keyframes popIn{0%{transform:scale(.85);opacity:0}70%{transform:scale(1.06)}100%{transform:scale(1);opacity:1}}
-.scroll-bar{position:fixed;top:0;left:0;height:3px;background:var(--accent);z-index:9999;width:0%;transition:width .08s}
-.hero h1{animation:fadeUp .7s ease both}
-.hero-lead{animation:fadeUp .7s .15s ease both;opacity:0;animation-fill-mode:both}
-.hero-actions{animation:fadeUp .7s .25s ease both;opacity:0;animation-fill-mode:both}
-.hero-chips{animation:fadeUp .7s .35s ease both;opacity:0;animation-fill-mode:both}
-.hero-imgs{animation:fadeUp .9s .1s ease both;opacity:0;animation-fill-mode:both}
-.btn-accent{position:relative;overflow:hidden}
-.btn-accent::after{content:'';position:absolute;top:0;left:-100%;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);animation:shimmer 3s 1s infinite}
-.product-card{transition:all .3s cubic-bezier(.2,.8,.2,1)}
-.product-card:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 16px 48px rgba(0,0,0,.15)}
-.product-card:hover .product-img img{transform:scale(1.08)}
-.step:hover .step-num{transform:scale(1.12);box-shadow:0 4px 16px rgba(212,82,26,.3)}
-.step-num{transition:transform .25s,box-shadow .25s}
-.dekal-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.1)}
-.faq-item:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:var(--shadow)}
-.hero-img-card:hover .hero-img-info{transform:translateY(-4px)}
-.hero-img-info{transition:transform .3s}
-.cart-count.bump{animation:popIn .35s ease both}
-/* ── DESIGN TOOL MODAL ── */
-.dt-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:800;backdrop-filter:blur(3px)}
-.dt-bg.open{display:flex;align-items:center;justify-content:center;padding:1rem;animation:fadeUp .25s ease}
-.dt-box{background:#fff;border-radius:16px;max-width:900px;width:100%;max-height:90vh;overflow:hidden;display:grid;grid-template-columns:1.1fr 1fr;box-shadow:0 24px 80px rgba(0,0,0,.25)}
-.dt-left{background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;position:relative}
-.dt-x{position:absolute;top:1rem;right:1rem;background:#fff;border:1px solid var(--border);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;z-index:5}
-.dt-x:hover{background:var(--accent-light)}
-.dt-wrap{position:relative;width:300px;height:360px}
-#dtSvg{width:100%;height:100%}
-#dtCv{position:absolute;top:0;left:0;width:100%;height:100%;cursor:default;touch-action:none}
-.dt-garments{display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap;justify-content:center}
-.dt-gb{padding:.35rem .9rem;border:1.5px solid var(--border);border-radius:20px;background:#fff;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .15s}
-.dt-gb.on{background:var(--ink);color:#fff;border-color:var(--ink)}
-.dt-hint{font-size:.72rem;color:var(--mid);margin-top:.6rem;display:none;text-align:center}
-.dt-right{padding:1.75rem;overflow-y:auto;max-height:90vh}
-.dt-right h3{font-family:var(--fh);font-weight:900;font-size:1.5rem;text-transform:uppercase;margin-bottom:.25rem}
-.dt-right p{font-size:.8rem;color:var(--mid);margin-bottom:1.25rem}
-.dt-grp{margin-bottom:1.1rem}
-.dt-lbl{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--mid);margin-bottom:.45rem;display:block}
-.dt-colors{display:flex;gap:.5rem;flex-wrap:wrap}
-.dt-sw{width:28px;height:28px;border-radius:50%;cursor:pointer;border:2px solid var(--border);transition:all .2s;flex-shrink:0}
-.dt-sw.on{border-color:var(--accent);transform:scale(1.18)}
-.dt-up{border:2px dashed var(--border);border-radius:8px;padding:1.1rem;text-align:center;cursor:pointer;position:relative;background:var(--bg);transition:all .2s}
-.dt-up:hover{border-color:var(--accent);background:var(--accent-light)}
-.dt-up input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}
-.dt-up b{font-size:.85rem}
-.dt-up small{display:block;font-size:.72rem;color:var(--mid);margin-top:.15rem}
-.dt-inp{width:100%;padding:.6rem .85rem;border:1.5px solid var(--border);border-radius:8px;font-size:.9rem;outline:none;transition:border-color .2s;font-family:var(--fb)}
-.dt-inp:focus{border-color:var(--accent)}
-.dt-szs{display:flex;gap:.4rem;flex-wrap:wrap}
-.dt-sc{padding:.32rem .7rem;border:1.5px solid var(--border);border-radius:6px;font-size:.8rem;font-weight:600;cursor:pointer;background:#fff;transition:all .15s}
-.dt-sc.on{background:var(--ink);color:#fff;border-color:var(--ink)}
-.dt-qrow{display:flex;align-items:center;gap:.75rem}
-.dt-qb{width:32px;height:32px;border:1.5px solid var(--border);border-radius:6px;background:#fff;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:700}
-.dt-qb:hover{border-color:var(--accent);color:var(--accent)}
-.dt-price{font-family:var(--fh);font-size:1.8rem;font-weight:900;color:var(--accent);margin:.85rem 0 .5rem;line-height:1}
-.dt-add{display:block;width:100%;padding:.9rem;background:var(--accent);color:#fff;border:none;border-radius:8px;font-weight:800;font-size:1rem;cursor:pointer;transition:background .2s}
-.dt-add:hover{background:#B83E0E}
-.dt-foot{font-size:.72rem;color:var(--mid);text-align:center;margin-top:.5rem}
-@media(max-width:700px){.dt-box{grid-template-columns:1fr}.dt-left{display:none}}
+/* ── INSPIRATION GALLERY ── */
+#inspiration{background:var(--white)}
+.insp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem}
+.insp-card{border-radius:var(--r);overflow:hidden;position:relative;aspect-ratio:1/1;cursor:pointer;background:var(--bg)}
+.insp-card img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.insp-card:hover img{transform:scale(1.06)}
+.insp-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 55%);opacity:0;transition:opacity .3s}
+.insp-card:hover .insp-overlay{opacity:1}
+.insp-label{position:absolute;bottom:0;left:0;right:0;padding:1rem;color:#fff;font-family:var(--fh);font-weight:800;font-size:1rem;text-transform:uppercase;letter-spacing:.04em;transform:translateY(8px);transition:transform .3s;opacity:0}
+.insp-card:hover .insp-label{transform:translateY(0);opacity:1}
+/* Tryggman section */
+#tryggman-section{background:var(--bg)}
+.tryggman-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:center}
+.tryggman-text h2{font-family:var(--fh);font-size:clamp(2rem,4vw,3rem);font-weight:900;line-height:1;margin-bottom:.75rem}
+.tryggman-text h2 em{color:var(--accent);font-style:normal}
+.tryggman-text p{font-size:.95rem;color:var(--mid);line-height:1.75;margin-bottom:1.5rem}
+.tryggman-imgs{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.tryggman-img{border-radius:var(--r);overflow:hidden;aspect-ratio:3/4}
+.tryggman-img img{width:100%;height:100%;object-fit:cover}
+@media(max-width:768px){.tryggman-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
-<div class="scroll-bar" id="scrollBar"></div>
 <div class="topbar">Klädtryck från 1 plagg · Korrektur ingår alltid · Leverans 5–8 dagar</div>
 
 <nav>
@@ -335,10 +293,10 @@ footer a:hover{color:var(--accent)}
       <li><a href="#produkter">Kläder</a></li>
       <li><a href="#dekaler">Dekaler</a></li>
       <li><a href="#hur">Hur det funkar</a></li>
+      <li><a href="#inspiration">Inspiration</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
     <div class="nav-right">
-<button onclick="openDesignTool()" style="background:var(--accent);color:#fff;border:none;padding:.55rem 1.25rem;border-radius:8px;font-family:var(--fb);font-weight:700;font-size:.88rem;cursor:pointer;margin-right:.5rem;transition:background .2s" onmouseover="this.style.background='#B83E0E'" onmouseout="this.style.background='var(--accent)'">✎ Designa själv</button>
       <button class="cart-btn" onclick="toggleCart()">
         🛒 Varukorg
         <span class="cart-count" id="nav-cart-count">0</span>
@@ -423,6 +381,58 @@ footer a:hover{color:var(--accent)}
   </div>
 </section>
 
+
+<!-- INSPIRATION -->
+<section id="inspiration">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow">Inspiration</p>
+      <h2 class="section-title">Vad kan vi trycka?</h2>
+      <p class="section-sub">Här är några exempel — vi kan trycka nästan vad som helst på ditt plagg.</p>
+    </div>
+    <div class="insp-grid">
+      <div class="insp-card">
+        <img src="images/insp_streetwear.png" alt="Streetwear tryck" loading="lazy">
+        <div class="insp-overlay"></div>
+        <div class="insp-label">Streetwear</div>
+      </div>
+      <div class="insp-card">
+        <img src="images/insp_goodvibes.png" alt="Good Vibes tryck" loading="lazy">
+        <div class="insp-overlay"></div>
+        <div class="insp-label">Text & motiv</div>
+      </div>
+      <div class="insp-card">
+        <img src="images/tryggman_hoodie.png" alt="Tryggman hoodie" loading="lazy">
+        <div class="insp-overlay"></div>
+        <div class="insp-label">Logotyp på hoodie</div>
+      </div>
+      <div class="insp-card">
+        <img src="images/tryggman_ungdom.png" alt="Tryggman ungdom" loading="lazy">
+        <div class="insp-overlay"></div>
+        <div class="insp-label">Eget varumärke</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRYGGMAN -->
+<section id="tryggman-section">
+  <div class="container">
+    <div class="tryggman-grid">
+      <div class="tryggman-text">
+        <p class="section-eyebrow">Eget varumärke</p>
+        <h2 class="section-title">Tryggman <em>kollektion</em></h2>
+        <p>Hoodies och t-shirts med ett budskap — för dig som vill bära något meningsfullt. "Där trygghet skapas." Finns i vuxen- och ungdomsstorlek.</p>
+        <a class="btn-accent" href="https://tryggman.se" target="_blank" style="display:inline-block;text-decoration:none">Se Tryggman →</a>
+      </div>
+      <div class="tryggman-imgs">
+        <div class="tryggman-img"><img src="images/tryggman_hoodie.png" alt="Tryggman hoodie" loading="lazy"></div>
+        <div class="tryggman-img"><img src="images/tryggman_ungdom.png" alt="Tryggman ungdom" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section id="faq">
   <div class="container">
@@ -436,14 +446,14 @@ footer a:hover{color:var(--accent)}
       <div class="faq-item"><div class="faq-q">Vad kostar frakt?</div><div class="faq-a">Frakt via PostNord från 69 kr. Fri frakt vid 10+ plagg.</div></div>
       <div class="faq-item"><div class="faq-q">Vad händer om jag inte är nöjd?</div><div class="faq-a">Nöjd-kund-garanti. Om trycket avviker från godkänt korrektur trycks det om utan kostnad.</div></div>
       <div class="faq-item"><div class="faq-q">Kan ni storleksanpassa loggan?</div><div class="faq-a">Ja. Skriv önskade mått i kommentarsfältet eller låt oss föreslå en storlek.</div></div>
-      <div class="faq-item"><div class="faq-q">Jag saknar logga — kan ni hjälpa?</div><div class="faq-a">Vi erbjuder enkel grafisk hjälp mot timavgift. Hör av dig på info@onsketryck.se.</div></div>
+      <div class="faq-item"><div class="faq-q">Jag saknar logga — kan ni hjälpa?</div><div class="faq-a">Vi erbjuder enkel grafisk hjälp mot timavgift. Hör av dig på info@önsketryck.se.</div></div>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="footer-logo"><em>ÖNSKE</em>TRYCK</div>
-  <p>Klädtryck från ett plagg · <a href="#">info@onsketryck.se</a> · 010-000 00 00</p>
+  <p>Klädtryck från ett plagg · <a href="#">info@önsketryck.se</a> · 010-000 00 00</p>
   <p style="margin-top:.4rem">© 2025 Önsketryck. Alla rättigheter förbehållna.</p>
 </footer>
 
@@ -578,6 +588,7 @@ const PHOTOS={
   hoodie:'images/hoodie.png',
   sweat:'images/sweatshirt.png',
   polo:'images/polo.png',
+  jacket:'images/jacket.jpg',
 };
 
 /* ── SVG FALLBACKS ── */
@@ -862,197 +873,13 @@ async function submitOrder(){
     } else throw new Error();
   } catch{
     btn.disabled=false; btn.textContent='Skicka beställning →';
-    alert('Något gick fel. Försök igen eller mejla info@onsketryck.se');
+    alert('Något gick fel. Försök igen eller mejla info@önsketryck.se');
   }
 }
 
 renderHero();
 renderProducts();
 renderDekaler();
-
-/* ── SCROLL BAR ── */
-window.addEventListener('scroll',()=>{
-  const p=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
-  const el=document.getElementById('scrollBar');
-  if(el) el.style.width=p+'%';
-},{passive:true});
-
-/* ── SCROLL REVEAL ── */
-setTimeout(()=>{
-  const obs=new IntersectionObserver(entries=>entries.forEach(e=>{
-    if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}
-  }),{threshold:0.1});
-  document.querySelectorAll('.step,.faq-item,.dekal-card,.product-card').forEach((el,i)=>{
-    el.style.cssText+='opacity:0;transform:translateY(20px);transition:opacity .55s '+(i*0.06)+'s ease,transform .55s '+(i*0.06)+'s ease';
-    obs.observe(el);
-  });
-},300);
-
-/* ── DESIGN TOOL ── */
-const DT_GARMENTS=[
-  {id:1,name:'T-shirt',svg:'tshirt',price:229,colors:['#FFFFFF','#1A1814','#3A3630','#D4521A','#1E7A48','#1E3A6E']},
-  {id:4,name:'Hoodie', svg:'hoodie',price:499,colors:['#FFFFFF','#1A1814','#3A3630','#D4521A','#1E7A48']},
-  {id:9,name:'Polo',   svg:'polo',  price:349,colors:['#FFFFFF','#1A1814','#3A3630','#1E7A48']},
-  {id:12,name:'Keps',  svg:'cap',   price:299,colors:['#1A1814','#3A3630','#D4521A']},
-];
-const DT_PATHS={
-  tshirt:c=>`<path d="M38,22 L14,34 L21,55 L38,49 L38,100 L82,100 L82,49 L99,55 L106,34 L82,22 Q71,16 60,17 Q49,16 38,22Z" fill="${c}" stroke="#B0ACA4" stroke-width="1.5"/>`,
-  hoodie:c=>`<path d="M60,12 Q50,12 46,19 L32,22 L10,36 L18,58 L32,52 L32,104 L88,104 L88,52 L102,58 L110,36 L88,22 L74,19 Q70,12 60,12Z" fill="${c}" stroke="#A4A09C" stroke-width="1.5"/><path d="M46,19 Q50,27 60,28 Q70,27 74,19" fill="none" stroke="#988" stroke-width="2"/>`,
-  polo:  c=>`<path d="M38,22 L16,36 L24,55 L38,49 L38,100 L82,100 L82,49 L96,55 L104,36 L82,22 L72,19 L66,28 L60,30 L54,28 L48,19Z" fill="${c}" stroke="#A0B0A4" stroke-width="1.5"/><path d="M54,19 L54,36 L60,39 L66,36 L66,19" fill="${c}" stroke="#90AC9C" stroke-width="1"/>`,
-  cap:   c=>`<path d="M22,72 Q22,42 60,35 Q98,42 98,72Z" fill="${c}"/><rect x="18" y="70" width="84" height="13" rx="3" fill="${c==='#FFFFFF'?'#E8E4DC':c}"/><path d="M16,76 L60,84 L60,90 Q34,87 16,76Z" fill="#F0EDE6"/>`,
-};
-let dtG=DT_GARMENTS[0], dtC='#FFFFFF', dtLogo=null, dtSz=80, dtQv=1, dtSv='M';
-let dtX=150, dtY=150, dtDrag=false, dtOx=0, dtOy=0, dtHov=false;
-
-function openDesignTool(){
-  dtG=DT_GARMENTS[0]; dtC=dtG.colors[0]; dtLogo=null; dtQv=1; dtSv='M';
-  dtX=150; dtY=150;
-  document.getElementById('dtText').value='';
-  document.getElementById('dtLogoName').textContent='';
-  document.getElementById('dtSzCtrl').style.display='none';
-  document.getElementById('dtHint').style.display='none';
-  document.getElementById('dtFile').value='';
-  document.getElementById('dtQty').textContent=1;
-  dtBuildGarments(); dtBuildColors(); dtBuildSizes(); dtDraw();
-  dtBindDrag();
-  document.getElementById('dtBg').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeDT(){
-  document.getElementById('dtBg').classList.remove('open');
-  document.body.style.overflow='';
-}
-document.addEventListener('DOMContentLoaded',()=>{
-  document.getElementById('dtBg').addEventListener('click',function(e){if(e.target===this)closeDT();});
-});
-
-function dtBuildGarments(){
-  document.getElementById('dtGarments').innerHTML=DT_GARMENTS.map(g=>
-    `<button class="dt-gb${g.id===dtG.id?' on':''}" onclick="dtPickG(${g.id})">${g.name}</button>`).join('');
-}
-function dtPickG(id){dtG=DT_GARMENTS.find(x=>x.id===id);dtC=dtG.colors[0];dtBuildGarments();dtBuildColors();dtDraw();}
-
-function dtBuildColors(){
-  document.getElementById('dtColors').innerHTML=dtG.colors.map(c=>
-    `<span class="dt-sw${c===dtC?' on':''}" style="background:${c};${c==='#FFFFFF'?'border-color:#ccc':''}" onclick="dtPickC('${c}')"></span>`).join('');
-}
-function dtPickC(c){dtC=c;dtBuildColors();dtDraw();}
-
-function dtBuildSizes(){
-  const sizes=['XS','S','M','L','XL','XXL'];
-  document.getElementById('dtSizes').innerHTML=sizes.map(s=>
-    `<span class="dt-sc${s===dtSv?' on':''}" onclick="dtPickS(this,'${s}')">${s}</span>`).join('');
-}
-function dtPickS(el,s){document.querySelectorAll('.dt-sc').forEach(x=>x.classList.remove('on'));el.classList.add('on');dtSv=s;}
-
-function dtQ(d){dtQv=Math.max(1,dtQv+d);document.getElementById('dtQty').textContent=dtQv;dtUpdPrice();}
-function dtUpdPrice(){document.getElementById('dtPriceEl').textContent=(dtG.price*dtQv).toLocaleString('sv-SE')+' kr';}
-
-function dtLoadLogo(e){
-  const f=e.target.files[0]; if(!f) return;
-  document.getElementById('dtLogoName').textContent='📎 '+f.name;
-  const r=new FileReader();
-  r.onload=ev=>{const img=new Image(); img.onload=()=>{dtLogo=img;dtX=150;dtY=150;document.getElementById('dtSzCtrl').style.display='block';document.getElementById('dtHint').style.display='block';dtDraw();};img.src=ev.target.result;};
-  r.readAsDataURL(f);
-}
-
-function dtDraw(){
-  document.getElementById('dtSvg').innerHTML=DT_PATHS[dtG.svg]?DT_PATHS[dtG.svg](dtC):'';
-  const cv=document.getElementById('dtCv'), ctx=cv.getContext('2d');
-  ctx.clearRect(0,0,cv.width,cv.height);
-  if(dtLogo){
-    dtSz=parseInt(document.getElementById('dtSzRange').value);
-    const w=dtSz, h=dtSz*(dtLogo.height/dtLogo.width);
-    ctx.drawImage(dtLogo,dtX-w/2,dtY-h/2,w,h);
-    if(dtHov){ctx.strokeStyle='rgba(212,82,26,.5)';ctx.lineWidth=1.5;ctx.setLineDash([4,3]);ctx.strokeRect(dtX-w/2-2,dtY-h/2-2,w+4,h+4);ctx.setLineDash([]);}
-  }
-  const txt=document.getElementById('dtText').value;
-  if(txt){
-    ctx.font='bold 14px Plus Jakarta Sans,sans-serif';
-    ctx.fillStyle=dtC==='#FFFFFF'?'#1A1814':'#FFFFFF';
-    ctx.textAlign='center';
-    ctx.fillText(txt,cv.width/2,dtLogo?dtY+dtSz*0.55+20:cv.height*0.5);
-  }
-  dtUpdPrice();
-}
-
-function dtHit(x,y){
-  if(!dtLogo) return false;
-  const w=dtSz, h=dtSz*(dtLogo.height/dtLogo.width);
-  return x>=dtX-w/2-8&&x<=dtX+w/2+8&&y>=dtY-h/2-8&&y<=dtY+h/2+8;
-}
-function dtPos(e){
-  const cv=document.getElementById('dtCv'), r=cv.getBoundingClientRect();
-  const sx=cv.width/r.width, sy=cv.height/r.height;
-  const cx=e.touches?e.touches[0].clientX:e.clientX;
-  const cy=e.touches?e.touches[0].clientY:e.clientY;
-  return{x:(cx-r.left)*sx, y:(cy-r.top)*sy};
-}
-function dtBindDrag(){
-  const cv=document.getElementById('dtCv');
-  cv.onmousedown=cv.ontouchstart=e=>{
-    const p=dtPos(e);
-    if(dtHit(p.x,p.y)){dtDrag=true;dtOx=p.x-dtX;dtOy=p.y-dtY;cv.style.cursor='grabbing';e.preventDefault();}
-  };
-  cv.onmousemove=cv.ontouchmove=e=>{
-    const p=dtPos(e);
-    if(dtDrag){
-      dtX=Math.max(10,Math.min(cv.width-10,p.x-dtOx));
-      dtY=Math.max(10,Math.min(cv.height-10,p.y-dtOy));
-      dtDraw(); e.preventDefault();
-    } else {
-      const h=dtHit(p.x,p.y); cv.style.cursor=h?'grab':'default';
-      if(h!==dtHov){dtHov=h;dtDraw();}
-    }
-  };
-  cv.onmouseup=cv.ontouchend=()=>{dtDrag=false;document.getElementById('dtCv').style.cursor=dtHov?'grab':'default';};
-  window.addEventListener('mouseup',()=>{dtDrag=false;});
-}
-
-function dtAdd(){
-  const p=PRODUCTS.find(x=>x.id===dtG.id)||PRODUCTS[0];
-  cart.push({cartId:++cartId,name:dtG.name+' (designad)',svg:p.svg,c:dtC,size:dtSv,qty:dtQv,unit:dtG.price,total:dtG.price*dtQv,logo:document.getElementById('dtLogoName').textContent,notes:document.getElementById('dtText').value});
-  closeDT(); renderCart(); toggleCart();
-}
-
-renderDekaler();
 </script>
-
-<div class="dt-bg" id="dtBg">
-  <div class="dt-box">
-    <div class="dt-left">
-      <button class="dt-x" onclick="closeDT()">✕</button>
-      <div class="dt-wrap">
-        <svg id="dtSvg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"></svg>
-        <canvas id="dtCv" width="300" height="360"></canvas>
-      </div>
-      <div class="dt-garments" id="dtGarments"></div>
-      <div class="dt-hint" id="dtHint">☞ Dra loggan för att flytta den</div>
-    </div>
-    <div class="dt-right">
-      <h3>Designa ditt plagg</h3>
-      <p>Ladda upp din logga, välj färg och lägg till text — se resultatet direkt.</p>
-      <div class="dt-grp"><span class="dt-lbl">Plaggfärg</span><div class="dt-colors" id="dtColors"></div></div>
-      <div class="dt-grp">
-        <span class="dt-lbl">Din logga</span>
-        <div class="dt-up"><input type="file" id="dtFile" accept="image/*" onchange="dtLoadLogo(event)"><b>⬆ Klicka eller dra hit</b><small>PNG · JPG · SVG — gärna transparent bakgrund</small></div>
-        <div id="dtLogoName" style="font-size:.75rem;color:var(--green);margin-top:.3rem"></div>
-      </div>
-      <div class="dt-grp" id="dtSzCtrl" style="display:none">
-        <span class="dt-lbl">Loggans storlek</span>
-        <input type="range" style="width:100%" id="dtSzRange" min="20" max="180" value="80" oninput="dtDraw()">
-      </div>
-      <div class="dt-grp"><span class="dt-lbl">Text (valfritt)</span><input type="text" class="dt-inp" id="dtText" placeholder="Företagsnamn, slogan..." oninput="dtDraw()"></div>
-      <div class="dt-grp"><span class="dt-lbl">Storlek</span><div class="dt-szs" id="dtSizes"></div></div>
-      <div class="dt-grp"><span class="dt-lbl">Antal</span>
-        <div class="dt-qrow"><button class="dt-qb" onclick="dtQ(-1)">−</button><span id="dtQty" style="font-weight:700;min-width:20px;text-align:center">1</span><button class="dt-qb" onclick="dtQ(1)">+</button></div>
-      </div>
-      <div class="dt-price" id="dtPriceEl">229 kr</div>
-      <button class="dt-add" onclick="dtAdd()">Lägg i varukorg</button>
-      <p class="dt-foot">Förhandsvisning — exakt korrektur skickas innan tryck</p>
-    </div>
-  </div>
-</div>
-
 </body>
 </html>
